@@ -1,0 +1,42 @@
+<div class="chat_container">
+  <div class="inbox">
+    <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw loading red"></i>
+    <div
+      *ngFor="let item of chat"
+      [ngClass]="
+        transmitter.documento === item.transmitter.documento
+          ? 'msg_out'
+          : 'msg_in'
+      "
+    >
+      <div
+        [ngClass]="
+          transmitter.documento === item.transmitter.documento
+            ? 'text_out'
+            : 'text_in'
+        "
+        class="animate__animated animate__bounceIn"
+      >
+        <p>
+          <span>{{ item.transmitter.nombre }}:</span> {{ item.message }}
+        </p>
+        <span> {{ item.date | date: "EEEE d MMM ; h:mm a" }}</span>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="formChatAdmin" (submit)="onSubmit()" class="form_chat">
+    <input
+      type="text"
+      name="message"
+      formControlName="message"
+      id="message"
+      placeholder="Escriba su mensaje..."
+    />
+    <i
+      (click)="onSubmit()"
+      *ngIf="!loading"
+      class="fas fa-paper-plane pointer"
+    ></i>
+    <i *ngIf="loading" class="fas fa-spinner fa-pulse"></i>
+  </form>
+</div>

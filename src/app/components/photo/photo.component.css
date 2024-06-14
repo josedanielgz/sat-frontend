@@ -1,0 +1,147 @@
+input[type="file"] {
+  display: none;
+}
+
+.photo_user {
+  position: relative;
+  z-index: 1;
+  margin: 16px 0;
+}
+
+.photo_user label {
+  position: absolute;
+  bottom: 20%;
+  left: 63%;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  background: white;
+  border-radius: 50%;
+  color: var(--dark-color);
+  text-align: center;
+}
+
+.photo_user::before {
+  content: "";
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  margin: auto;
+  z-index: -1;
+  transform: rotate(-10deg);
+  background: var(--red-primary-color);
+}
+
+.photo_user img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background-color: var(--gray-menu);
+  border: 3px solid white;
+}
+
+.no_photo {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  background: var(--gray-menu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 40px;
+}
+
+.no_photo span {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--dark-color);
+}
+
+.save {
+  left: 75% !important;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .photo_user img {
+    width: 200px;
+    height: 200px;
+    border: 5px solid white;
+  }
+
+  .no_photo {
+    width: 200px;
+    height: 200px;
+    border: 5px solid white;
+  }
+
+  .no_photo span {
+    font-size: 60px;
+  }
+
+  .photo_user {
+    margin: 32px 0;
+  }
+
+  .photo_user label {
+    height: 50px;
+    width: 50px;
+    left: 60%;
+  }
+
+  .photo_user label i {
+    line-height: 50px;
+    font-size: 30px;
+  }
+
+  .save {
+    left: 70% !important;
+  }
+}
+
+/*  Desktop*/
+@media (min-width: 1152px) {
+  .photo_user::before {
+    width: 70%;
+    margin: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .photo_user img {
+    width: 120px;
+    height: 120px;
+    border: 4px solid white;
+  }
+
+  .no_photo {
+    width: 120px;
+    height: 120px;
+    border: 4px solid white;
+  }
+
+  .photo_user {
+    margin: 32px 0;
+  }
+
+  .photo_user label {
+    height: 30px;
+    width: 30px;
+    left: 57%;
+  }
+
+  .photo_user label i {
+    line-height: 30px;
+    font-size: 16px;
+  }
+
+  .save {
+    left: 63% !important;
+  }
+}

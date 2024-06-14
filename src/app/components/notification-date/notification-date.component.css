@@ -1,0 +1,76 @@
+.wrapper_alert {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.alert_container {
+  width: 294px;
+  background: var(--gray-menu);
+  border-radius: 25px;
+  padding: 16px;
+}
+
+.notification_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification_header h1,
+.notification_header i {
+  font-weight: bold;
+  font-size: 21px;
+}
+
+.form_input {
+  margin: 16px 0;
+  padding: 0 8px;
+  width: 100%;
+}
+
+.form_input label {
+  margin-right: 16px;
+}
+
+.form_input select {
+  outline: none;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .alert_container {
+    width: 458px;
+  }
+
+  .alert_container h1 {
+    font-size: 33px;
+  }
+  select,
+  input,
+  label {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .alert_container {
+    width: 450px;
+  }
+}

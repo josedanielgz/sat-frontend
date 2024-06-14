@@ -1,0 +1,189 @@
+input[type="checkbox"] {
+  display: none;
+}
+
+#showLastReport:checked ~ .tarjet {
+  display: block;
+}
+
+.last_option label {
+  position: relative;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+select {
+  border: none;
+  outline: none;
+  appearance: none;
+  width: 100%;
+}
+
+label {
+  margin-right: 8px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.report_container {
+  margin: 16px;
+  text-align: center;
+}
+
+.title_header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.title_header * {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.last_option {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+}
+
+.loading {
+  position: absolute;
+}
+
+.tarjet {
+  background: var(--gray-menu);
+  position: absolute;
+  top: 32px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--dark-color);
+  display: none;
+}
+
+.tarjet blockquote {
+  font-size: 14px;
+  color: var(--dark-color);
+  font-style: italic;
+}
+
+.last_option label {
+  cursor: pointer;
+  color: var(--red-primary-color);
+}
+
+.select_dates {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list_resports {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.report {
+  margin: 16px 0;
+}
+
+.last {
+  padding-bottom: 48px;
+}
+
+.line {
+  height: 2px;
+  background: var(--gray-dark-color);
+}
+
+.floating {
+  position: fixed;
+  left: 8px;
+  top: 8px;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1151px) {
+  .report_container {
+    margin-top: 96px;
+  }
+
+  .title_header {
+    margin-top: 80px;
+  }
+
+  .title_header * {
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .list_reports {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .report p,
+  select,
+  label,
+  strong {
+    font-size: 20px;
+  }
+
+  .tarjet blockquote {
+    font-size: 18px;
+  }
+
+  .floating {
+    position: fixed;
+    left: unset;
+    top: unset;
+    right: 32px;
+    bottom: 32px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1152px) {
+  .report_container {
+    margin-top: 80px;
+  }
+
+  img {
+    max-height: 180px;
+  }
+
+  .floating {
+    position: fixed;
+    left: unset;
+    top: unset;
+    right: 32px;
+    bottom: 32px;
+  }
+
+  .list_reports {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .last {
+    padding-bottom: 0;
+  }
+
+  .tarjet {
+    width: 70%;
+    margin: auto;
+  }
+}

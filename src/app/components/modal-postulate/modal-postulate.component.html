@@ -1,0 +1,38 @@
+<div
+  class="wrapper_alert animate__animated animate__fadeIn"
+  (click)="onClick($event)"
+>
+  <div class="alert_container">
+    <div>
+      <h1>Información de la postulación</h1>
+      <ul>
+        <li>
+          <strong>Fecha:</strong> {{ postulation.date | date: "dd MMMM, yyy" }}
+        </li>
+        <li><strong>Estado:</strong> {{ postulation.state }}</li>
+        <li>
+          <strong>Postulador:</strong> {{ postulation.postulator.nombre }}
+          {{ postulation.postulator.apellido || "" }} |
+          {{ postulation.postulator.rol }}
+        </li>
+      </ul>
+    </div>
+    <span>{{ postulation.description.length }}/200</span>
+    <textarea
+      disabled
+      autofocus
+      placeholder="Escriba la descripción..."
+      maxlength="200"
+      >{{ postulation.description }}</textarea
+    >
+    <hr />
+    <div class="alert_options">
+      <button (click)="close()">
+        {{ role === "jefe" ? "Cancelar" : "Aceptar" }}
+      </button>
+      <button *ngIf="role === 'jefe'" (click)="attend()">
+        Aceptar <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </div>
+  </div>
+</div>

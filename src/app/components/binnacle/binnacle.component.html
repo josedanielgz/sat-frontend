@@ -1,0 +1,81 @@
+<div
+  class="wrapper_binnacle animate__animated animate__fadeIn"
+  [ngClass]="{ show: !show }"
+>
+  <div class="binnacle">
+    <h3>
+      Bitácora estudiante
+      <i
+        *ngIf="isAdmin"
+        class="far fa-edit red pointer"
+        (click)="toggleShow()"
+        title="Agregar comentario"
+      ></i>
+      <i
+        *ngIf="isAdmin"
+        title="Descargar"
+        class="fas fa-download red pointer pdf"
+        (click)="download()"
+      ></i>
+    </h3>
+    <div class="binnacle_options">
+      <a
+        *ngIf="role === 'psicologo' || role === 'estudiante'"
+        routerLink="/estudiante/historia-psicologica"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Historía Psicológica</a
+      >
+      <a
+        *ngIf="role === 'medico' || role === 'estudiante'"
+        routerLink="/estudiante/historia-clinica"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Historía Clínica</a
+      >
+      <a
+        *ngIf="role === 'odontologo' || role === 'estudiante'"
+        target="_blank"
+        href="https://docs.google.com/document/d/15wBAOiTzb9W6zfHPU18ZNDTod-8FwuHj/edit"
+        >Historia Odontológica</a
+      >
+    </div>
+    <div class="binnacle-text">
+      <p class="binnacle_not" *ngIf="binnacle.length < 1">
+        No hay nada para mostrar en la bitácora del estudiante
+      </p>
+      <div class="text" *ngFor="let item of binnacle">
+        <p>
+          <span>{{ normalize(item.role) }}:</span> {{ item.text }}
+          <i class="fas fa-check-circle red"></i>
+        </p>
+        <blockquote>
+          {{ item.date | date: "EEEE d MMMM 'del' y, hh:mm a" }}
+          <i class="fas fa-clock red"></i>
+        </blockquote>
+        <hr />
+      </div>
+    </div>
+    <form
+      class="recommendation animate__animated animate__fadeInDown"
+      *ngIf="isAdmin && show"
+      [formGroup]="formBinnacle"
+      (submit)="onSubmit()"
+    >
+      <div class="textarea">
+        <label for="recommendation">Recomendaciones</label>
+        <textarea
+          id="text"
+          placeholder="Escriba el texto aquí"
+          formControlName="text"
+          name="text"
+        ></textarea>
+      </div>
+      <button [disabled]="formBinnacle.invalid || loading" type="submit">
+        Guardar cambios <i *ngIf="!loading" class="fas fa-save"></i>
+        <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+  </div>
+</div>
+<div id="toForm"></div>

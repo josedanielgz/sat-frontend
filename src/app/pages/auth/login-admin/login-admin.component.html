@@ -1,0 +1,90 @@
+<div class="content">
+  <div class="auth_container">
+    <div class="auth_header">
+      <img src="/assets/image/Logo_SAT.svg" alt="Logo SAT" />
+      <h1>SAT</h1>
+      <p>Sistema de alertas tempranas</p>
+    </div>
+    <form [formGroup]="formLogin" (submit)="onSubmit()" class="form_auth">
+      <div
+        class="form_input"
+        [ngClass]="{
+          error: document.invalid && (document.dirty || document.touched)
+        }"
+      >
+        <input
+          [type]="typeDocument"
+          placeholder="Documento"
+          (focus)="changeTypeDocument(true)"
+          (blur)="changeTypeDocument(false)"
+          formControlName="document"
+          autocomplete="off"
+          name="document"
+          required
+        />
+        <i *ngIf="!document.invalid" class="fas fa-address-card fa-fw"></i>
+        <i
+          *ngIf="document.invalid"
+          class="fas fa-exclamation-triangle pointer"
+          id="document"
+        ></i>
+        <div class="popover">
+          <ul *ngIf="document.invalid && (document.dirty || document.touched)">
+            <li>* Debe tener 8 ó 10 caracteres</li>
+            <li>* Solo se aceptan números</li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="form_input"
+        [ngClass]="{
+          error: password.invalid && (password.dirty || password.touched)
+        }"
+      >
+        <input
+          [type]="typePassword"
+          placeholder="Contraseña"
+          formControlName="password"
+          name="password"
+          required
+        />
+        <i
+          *ngIf="!password.invalid && !showPassword"
+          (click)="changeShowPassword()"
+          class="fas fa-eye fa-fw"
+        ></i>
+        <i
+          *ngIf="!password.invalid && showPassword"
+          (click)="changeShowPassword()"
+          class="fas fa-eye-slash fa-fw"
+        ></i>
+        <i
+          *ngIf="password.invalid"
+          class="fas fa-exclamation-triangle pointer"
+          id="password"
+        ></i>
+        <div class="popover">
+          <ul *ngIf="password.invalid && (password.dirty || password.touched)">
+            <li>* El campo es obligatorio</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="forgot">
+        <a routerLink="/auth/forgot-password">¿Olvidó su contraseña?</a>
+      </div>
+      <button [disabled]="formLogin.invalid || loading" type="submit">
+        Iniciar sesión
+        <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+    <p class="copyright">2021 © Todos los derechos reservados</p>
+  </div>
+  <div class="ilustration">
+    <img
+      src="/assets/image/ilustration.svg"
+      alt="Ilustración de una chica estudiando"
+    />
+  </div>
+</div>

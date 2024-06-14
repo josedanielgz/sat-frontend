@@ -1,0 +1,94 @@
+
+  
+  :root {
+    --dark: #212121;
+    --cyan: hsl(174, 86%, 45%);
+  }
+  
+  body {
+    background: var(--dark);
+  }
+  
+  .container {
+      display: flex;
+      justify-content: center;
+  }
+  h1{
+      font-size: 25px;
+  }
+  
+  .spinner-2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 30px solid var(--gray-menu);
+    border-left-color: var(--red-primary-color);
+    border-right-color: var(--red-primary-color);
+    animation: spin 2s linear infinite;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+  }
+  
+  .loading div {
+    width: 40px;
+    height: 40px;
+    background:var(--red-primary-color); ;
+    margin: 0 2px;
+    border-radius: 50%;
+    animation: bounce 1.5s infinite ease-in-out both;
+  }
+  
+  .loading .bounce-2 {
+    animation-delay: 0.3s;
+  }
+  
+  .loading .bounce-3 {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spin-scale {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+  
+    100% {
+      transform: rotate(360deg) scale(0.5);
+    }
+  }
+  
+  @keyframes bounce {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+  
+    40% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes throb {
+     0% {
+      transform: scale(1);
+    }
+  
+    100% {
+      transform: scale(0.8);
+    }
+  }
+  
+  

@@ -1,0 +1,245 @@
+input[type="time"]::-webkit-datetime-edit-ampm-field {
+  color: transparent;
+  display: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none;
+  position: relative;
+  z-index: -1;
+}
+
+select {
+  appearance: none;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.card_profile {
+  margin: 16px;
+  text-align: center;
+}
+
+.photo {
+  width: 250px;
+  margin: auto;
+}
+
+.card_profile > p {
+  margin-top: 16px;
+}
+
+hr {
+  margin: 16px 0;
+}
+
+.data_student {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.info_student a {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.info_student label:hover {
+  border: 1px solid var(--white);
+  background: var(--red-primary-color);
+  color: var(--white);
+}
+
+.description h3 {
+  font-weight: bold;
+}
+
+.description p {
+  font-size: 14px;
+}
+
+.description p:nth-child(2) {
+  color: var(--gray-dark-color);
+}
+
+.tarjet {
+  margin: 20px auto;
+  width: 210px;
+  background: var(--red-primary-color);
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 5px;
+}
+
+.seccion {
+  text-align: center;
+  font-weight: bold;
+  width: 40px;
+  color: white;
+  margin-top: 5px;
+}
+
+.tarjet_active {
+  background: white;
+  color: var(--red-primary-color);
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
+.showProfile {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editProfile {
+  margin: auto;
+}
+
+.editProfile .form_input {
+  margin: 8px 0;
+  width: 100%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.floating {
+  position: fixed;
+  left: 8px;
+  top: 8px;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  color: var(white);
+}
+
+.tarje_container {
+  margin: auto;
+  padding-bottom: 48px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .description h3 {
+    font-size: 30px;
+  }
+
+  .description p {
+    font-size: 30px;
+  }
+
+  .tarjet {
+    width: 400px;
+    height: 60px;
+  }
+
+  .photo {
+    width: 550px;
+  }
+
+  .seccion {
+    width: 100px;
+    text-align: center;
+  }
+
+  .seccion i {
+    line-height: 60px;
+    font-size: 35px;
+  }
+
+  .showProfile span {
+    font-size: 30px;
+  }
+
+  .editProfile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .tarje_container {
+    width: 400px;
+    padding-bottom: 0;
+  }
+
+  button {
+    font-size: 20px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .floating {
+    position: fixed;
+    left: unset;
+    top: unset;
+    right: 32px;
+    bottom: 32px;
+  }
+}
+/*  Desktop*/
+@media (min-width: 1152px) {
+  .description h3 {
+    font-size: 18px;
+  }
+
+  .description p {
+    font-size: 18px;
+  }
+
+  .tarjet {
+    margin: auto;
+    width: 400px;
+    height: 60px;
+  }
+
+  .photo {
+    width: 550px;
+    padding-top: 16px;
+  }
+
+  .seccion {
+    width: 100px;
+    text-align: center;
+  }
+
+  .seccion i {
+    line-height: 60px;
+    font-size: 35px;
+  }
+
+  .showProfile span {
+    font-size: 30px;
+    font-size: 18px;
+  }
+  .editProfile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .floating {
+    position: fixed;
+    left: unset;
+    top: unset;
+    right: 32px;
+    bottom: 32px;
+  }
+
+  .tarje_container {
+    width: 400px;
+    padding-bottom: 0;
+  }
+
+  button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}

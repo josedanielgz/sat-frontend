@@ -1,0 +1,12 @@
+<div class="card_profile">
+  <div class="photo">
+    <app-photo [isAdmin]="true"></app-photo>
+  </div>
+  <div class="info_student">
+    <div class="description">
+      <h3>{{ user.nombre }} {{ user.apellido }}</h3>
+      <p>{{ user.correo }}</p>
+      <p>{{ user.rol | uppercase }}</p>
+    </div>
+  </div>
+</div>

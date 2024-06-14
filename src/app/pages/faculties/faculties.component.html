@@ -1,0 +1,27 @@
+<div class="wrapper_faculties animate__animated animate__fadeIn">
+  <h1>Listado de facultades</h1>
+
+  <app-search-global></app-search-global>
+
+  <div class="row_header">
+    <app-statistics-risk></app-statistics-risk>
+  </div>
+
+  <div class="accordion">
+    <app-loading *ngIf="loading"></app-loading>
+    <div class="item" *ngFor="let facultie of faculties; let i = index">
+      <input type="checkbox" name="accordion" id="item-{{ i + 1 }}" />
+      <label for="item-{{ i + 1 }}">{{ facultie.nombre }}</label>
+      <div>
+        <ul>
+          <li
+            *ngFor="let program of facultie.programas"
+            routerLink="/vicerrector/semestres/programa/{{ program }}"
+          >
+            {{ program }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

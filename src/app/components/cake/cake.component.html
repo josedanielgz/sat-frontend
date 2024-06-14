@@ -1,0 +1,61 @@
+<div class="cake_container">
+  <div class="list_exam">
+    <ul>
+      <li>Notas</li>
+      <li
+        (click)="getNotes('1p')"
+        [ngClass]="{ active: exam === '1p' }"
+        title="Primer Previo"
+      >
+        <span>1P</span>
+      </li>
+      <li
+        (click)="getNotes('2p')"
+        [ngClass]="{ active: exam === '2p' }"
+        title="Segundo Previo"
+      >
+        <span>2P</span>
+      </li>
+      <li
+        (click)="getNotes('3p')"
+        [ngClass]="{ active: exam === '3p' }"
+        title="Tercer Previo"
+      >
+        <span>3P</span>
+      </li>
+      <li
+        (click)="getNotes('exam')"
+        [ngClass]="{ active: exam === 'exam' }"
+        title="Examen Final"
+      >
+        <span>EF</span>
+      </li>
+      <li
+        (click)="getNotes('df')"
+        [ngClass]="{ active: exam === 'df' }"
+        title="Definitiva"
+      >
+        <span>DF</span>
+      </li>
+      <li title="Ocultar / Mostrar" (click)="changeShow()">
+        <span *ngIf="!show" class="far fa-eye red"></span>
+        <span *ngIf="show" class="far fa-eye-slash red"></span>
+      </li>
+    </ul>
+  </div>
+
+  <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw red cake_loading"></i>
+
+  <div class="cake animate__fadeIn" *ngIf="show && !loading">
+    <ngx-charts-advanced-pie-chart
+      class="cake"
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="single"
+      label="Estudiantes"
+      [gradient]="gradient"
+    >
+    </ngx-charts-advanced-pie-chart>
+    <span title="Nota Promedio">{{ averageScore | number: "1.1-1" }}</span>
+  </div>
+</div>

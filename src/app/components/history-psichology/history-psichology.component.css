@@ -1,0 +1,148 @@
+.wrapper_history {
+  margin: 32px 16px;
+  text-align: center;
+}
+
+.wrapper_history h3 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.history_family {
+  background: var(--gray-menu);
+  border: 1px solid var(--dark-color);
+  position: relative;
+  margin: 32px 0;
+}
+
+.history_family p {
+  font-weight: bold;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 8px;
+  line-height: 40px;
+  background: var(--gray-dark-color);
+  border-radius: 10px;
+  position: absolute;
+  text-transform: uppercase;
+  left: -1px;
+  top: -20px;
+}
+
+.history_family textarea {
+  width: 100%;
+  resize: none;
+  padding: 16px 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.btn_options {
+  position: absolute;
+  bottom: -48px;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.btn_options button {
+  margin: 0;
+  width: 120px;
+}
+
+.btn_options .cancel {
+  margin-right: 8px;
+  background: var(--gray-dark-color);
+  color: black;
+}
+
+.meets {
+  margin: 16px 0;
+}
+
+.meets h3 {
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.list_meets {
+  display: grid;
+  gap: 16px;
+}
+
+.meet {
+  background: var(--gray-menu);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.meet > p {
+  color: var(--red-primary-color);
+}
+
+.meet div {
+  margin: 8px;
+}
+
+.meet .reason p {
+  color: var(--red-primary-color);
+}
+
+.meet .reason p span,
+.meet .date p span {
+  color: black;
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .wrapper_history {
+    margin: 32px 80px;
+  }
+
+  .wrapper_history h3 {
+    font-size: 25px;
+  }
+
+  .list_meets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .history_family p {
+    font-size: 18px;
+  }
+
+  .history_family textarea {
+    font-size: 18px;
+    padding: 32px 8px;
+  }
+
+  .meet * {
+    font-size: 18px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_history {
+    margin: 0 16px;
+    width: 50vw;
+    height: 480px;
+  }
+
+  .list_meets {
+    grid-template-columns: repeat(2, 1fr);
+    height: 180px;
+    overflow-y: scroll;
+  }
+
+  .meets h3 {
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+}

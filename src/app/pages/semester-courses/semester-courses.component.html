@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class="title"><h1>Listado de Materias por Semestre</h1></div>
+<div class="wrapper">
+  <div class="semesters">
+    <select (change)="showSemesterCourse($event)" [(ngModel)]="current">
+      <option value="" disabled>No selección</option>
+      <option
+        *ngFor="let semestre of semesters; index as j"
+        value="{{ j + 1 }}"
+      >
+        Semestre {{ semestre.nombre }}
+      </option>
+    </select>
+  </div>
+
+  <app-loading class="loading" *ngIf="loading"></app-loading>
+
+  <div class="courses" *ngIf="!loading && semesters.length > 0">
+    <div
+      class="course"
+      *ngFor="let course of semesters[index].cursos; index as i"
+    >
+      <div class="name_course">
+        <i class="fas fa-book book_course"></i>
+        <h4 [title]="course.nombre">{{ course.nombre }}</h4>
+        <i *ngIf="course.loading" class="fas fa-spinner fa-pulse arrow"></i>
+        <i
+          (click)="toggleShow(i, course.codigo)"
+          *ngIf="!course.loading && !course.showGroup"
+          class="fas fa-chevron-down arrow pointer"
+        ></i>
+        <i
+          (click)="toggleShow(i, course.codigo)"
+          *ngIf="!course.loading && course.showGroup"
+          class="fas fa-chevron-up arrow pointer"
+        ></i>
+      </div>
+      <div *ngIf="course.showGroup" class="groups">
+        <a
+          href="/jefe/informe-curso/{{ course.codigo }}/{{ group.grupo }}"
+          *ngFor="let group of course.grupos"
+        >
+          <span>Grupo {{ group.grupo }}</span> - {{ group.nombredocente }}
+          {{ group.apellidodocente }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

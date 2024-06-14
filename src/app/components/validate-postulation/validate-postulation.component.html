@@ -1,0 +1,28 @@
+<div *ngIf="!postulation">
+  <button (click)="updateShowDescription()" *ngIf="isTeacher">
+    Postular estudiante <i class="fas fa-hand-holding-medical"></i>
+  </button>
+  <button (click)="updateShowDescription()" *ngIf="user.rol === 'estudiante'">
+    Solicitar Ayuda <i class="fas fa-hand-holding"></i>
+  </button>
+</div>
+
+<div *ngIf="postulation" class="postulation">
+  <p>
+    El Estudiante se encuentra postulado para realizar seguimiento desde el dia
+    {{ postulation.date | date: "dd MMMM 'del' yyyy" }} y el estado de su
+    postulación es:
+    <span>{{ postulation.state }}</span>
+  </p>
+</div>
+
+<app-button-notification
+  *ngIf="isAdmin && postulation"
+  [postulation]="postulation"
+></app-button-notification>
+
+<app-modal-description
+  *ngIf="showDescription"
+  (isClosed)="updateShowDescription($event)"
+  (postulation)="postulation = $event"
+></app-modal-description>

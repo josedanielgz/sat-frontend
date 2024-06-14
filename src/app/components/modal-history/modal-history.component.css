@@ -1,0 +1,195 @@
+.wrapper_alert {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.alert_container {
+  width: 294px;
+  padding: 8px;
+  background: var(--white);
+  text-align: center;
+  border-radius: 25px;
+  margin-top: -50px;
+  height: 450px;
+}
+
+.title h3 {
+  font-weight: bold;
+}
+
+.alert_container hr {
+  margin: 8px 0;
+}
+
+.info_meet {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.info_meet p {
+  margin: 8px 0;
+}
+
+.info_meet p span {
+  font-weight: bold;
+  color: black;
+}
+
+.list_info {
+  background: var(--gray-dark-color);
+  border-radius: 10px;
+  padding: 8px 16px;
+  height: 300px;
+  overflow-y: scroll;
+}
+.list_results_observations {
+  background: var(--gray-menu);
+  border-radius: 10px;
+  padding: 8px;
+  margin: 8px 0;
+  gap: 16px;
+}
+
+.list_info .item {
+  background: var(--gray-menu);
+  border-radius: 10px;
+  padding: 8px;
+  margin: 16px 0;
+}
+
+.list_info .item h3 {
+  margin: 16px 0;
+}
+
+.list_info .item h3 * {
+  font-weight: bold;
+}
+
+.list_info .item p {
+  text-align: justify;
+}
+.btn_options button {
+  margin: 0;
+  width: 90px;
+  height: 30px;
+  font-size: 16px;
+}
+.btn_options button i {
+  font-size: 16px;
+}
+
+.btn_options .cancel {
+  margin-right: 8px;
+  width: 100px;
+  background: var(--gray-dark-color);
+  color: black;
+}
+.btn_options {
+  position: absolute;
+  bottom: -32px;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.history_clinical {
+  position: relative;
+}
+
+.form_textarea {
+  background: var(--gray-menu);
+  border: 1px solid var(--dark-color);
+  position: relative;
+  margin: 32px 0;
+}
+.form_textarea p {
+  font-weight: bold;
+  font-size: 12px;
+  height: 40px;
+  padding: 0 4px;
+  line-height: 40px;
+  background: var(--gray-dark-color);
+  border-radius: 10px;
+  position: absolute;
+  text-transform: uppercase;
+  left: 135px;
+  top: -20px;
+}
+
+.form_textarea textarea {
+  width: 100%;
+  resize: none;
+  padding: 16px 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .alert_container {
+    width: 458px;
+    margin-top: 0;
+    height: 700px;
+    padding: 16px;
+  }
+
+  .title h3 {
+    font-size: 20px;
+  }
+
+  .info_meet {
+    justify-content: space-between;
+  }
+
+  .info_meet * {
+    font-size: 20px;
+  }
+
+  .info_meet {
+    justify-content: center;
+  }
+
+  .list_info {
+    height: 500px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .alert_container {
+    width: 450px;
+    margin-top: 50px;
+    height: 500px;
+    padding: 16px;
+  }
+
+  .title h3 {
+    font-size: 20px;
+  }
+
+  .list_info {
+    height: 350px;
+  }
+}

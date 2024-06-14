@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+:root {
+  --white: #ffff;
+  --red-primary-color: #bb0b20;
+  --red-disable: #ce4949;
+  --green-primary-color: #14c25a;
+  --orange-primary-color: #ff8300;
+  --yellow-primary-color: #ede605;
+  --gray-dark-color: #c6bcb2;
+  --dark-color: #353343;
+  --gray-menu: #f3f0ee;
+  --gray-table: #c4c4c4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+body {
+  caret-color: var(--red-primary-color);
+}
+
+body::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+textarea::-webkit-scrollbar,
+div::-webkit-scrollbar-thumb {
+  background: var(--red-primary-color);
+  border-radius: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  background: var(--red-primary-color);
+  width: 90%;
+  height: 47px;
+  margin: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: var(--red-disable) !important;
+  filter: brightness(180%) !important;
+}
+
+button:hover {
+  filter: brightness(80%);
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--red-primary-color);
+}
+
+.active,
+.active * {
+  color: var(--red-primary-color) !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.error {
+  border: 1px solid var(--red-primary-color) !important;
+  position: relative;
+}
+
+.error i,
+.error input,
+.error input::placeholder {
+  color: var(--red-primary-color) !important;
+}
+
+#code:hover ~ .popover,
+#document:hover ~ .popover,
+#password:hover ~ .popover,
+#email:hover ~ .popover,
+#newPassword:hover ~ .popover,
+#confirmPassword:hover ~ .popover,
+#role:hover ~ .popover {
+  visibility: visible;
+  transition: all 0.5s ease-in;
+}
+
+.popover {
+  position: absolute;
+  right: 48px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--red-primary-color);
+  color: var(--white);
+  z-index: 1;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.popover::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  background: var(--red-primary-color);
+  right: -6px;
+  z-index: -1;
+  transform: rotate(45deg);
+}
+
+.popover ul {
+  list-style: none;
+}
+
+.popover ul li {
+  font-size: 14px;
+}
+
+.form_input {
+  width: 90%;
+  height: 47px;
+  background: var(--white);
+  border: 1px solid var(--gray-dark-color);
+  color: var(--gray-dark-color);
+  margin: 16px 16px 0 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+.form_input input {
+  width: 100%;
+  background: unset;
+  border: none;
+  color: var(--dark-color);
+}
+
+.app_container {
+  margin-top: 80px;
+}
+
+.red {
+  color: var(--red-primary-color);
+}
+.green {
+  color: var(--green-primary-color);
+}
+.orange {
+  color: var(--orange-primary-color);
+}
+.yellow {
+  color: var(--yellow-primary-color);
+}
+
+.gray {
+  color: var(--gray-menu);
+}
+
+.advanced-pie-legend {
+  width: 100% !important;
+  margin: none !important;
+  padding: none !important;
+}
+
+.advanced-pie-legend .total-value,
+.advanced-pie-legend .total-label {
+  display: none !important;
+}
+
+.advanced-pie-legend
+  .legend-items-container
+  .legend-items
+  .legend-item
+  .item-percent {
+  font-size: 20px !important;
+  position: right !important;
+}
+
+/* Móvil */
+@media (max-width: 500px) {
+  .cake {
+    width: 90vw !important;
+    overflow-x: hidden !important;
+  }
+
+  .cake > div {
+    width: 300px !important;
+    height: 280px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    overflow-x: hidden !important;
+  }
+
+  .advanced-pie-legend {
+    margin: 16px 0 !important;
+    overflow-x: scroll !important;
+  }
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .app_container {
+    margin-top: 0;
+    margin-bottom: 80px;
+  }
+
+  .advanced-pie-legend
+    .legend-items-container
+    .legend-items
+    .legend-item
+    .item-label {
+    font-size: 20px !important;
+  }
+}

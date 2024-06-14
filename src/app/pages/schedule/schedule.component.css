@@ -1,0 +1,150 @@
+.wrapper_schedule {
+  margin: 32px 16px;
+}
+
+.wrapper_schedule p {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.quotes {
+  margin-top: 32px;
+  overflow-x: scroll;
+}
+
+.quotes table {
+  width: 100%;
+  text-align: center;
+}
+
+.quotes table * {
+  font-size: 18px;
+}
+
+.quotes table thead tr th {
+  font-weight: bold;
+  padding: 10px;
+}
+
+.quotes table tbody tr:nth-child(odd) {
+  background: var(--gray-table);
+}
+
+button {
+  width: auto;
+  margin: 0;
+  padding: 0 16px;
+}
+
+.pagination {
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pagination a {
+  font-size: 18px;
+  border: 1px solid var(--red-primary-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.pagination a.active,
+.pagination a:hover {
+  background: var(--red-primary-color);
+  color: white !important;
+}
+
+.filter {
+  color: var(--red-primary-color);
+  cursor: pointer;
+}
+
+.option-attendance label {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.activity {
+  text-align: center;
+}
+
+.activity button {
+  margin-top: 16px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .quotes,
+  .pagination {
+    width: 90vw;
+    margin: auto;
+  }
+  .filter {
+    padding: 20px;
+    font-size: 22px;
+  }
+  .quotes table * {
+    font-size: 20px;
+  }
+  .activity {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .activity_button {
+    width: 180px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .activity button {
+    margin: 0px;
+  }
+  p {
+    font-size: 22px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_schedule {
+    margin-top: 80px;
+  }
+
+  .quotes,
+  .pagination {
+    width: 60vw;
+    margin: 32px auto;
+  }
+
+  .quotes table * {
+    font-size: 20px;
+  }
+
+  .attendance {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .activity {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .activity_button {
+    width: 385px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .activity button {
+    margin: 0px;
+  }
+}

@@ -1,0 +1,26 @@
+button {
+  background: var(--green-primary-color);
+  margin: auto 16px;
+}
+
+button:hover {
+  background: #0f9946;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  button {
+    width: 400px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  button {
+    width: 400px;
+    margin: 16px 0;
+  }
+}

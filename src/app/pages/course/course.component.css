@@ -1,0 +1,35 @@
+.course_container {
+  text-align: center;
+  margin: 32px 16px;
+}
+
+.course_container a {
+  float: right;
+  margin: 16px 0;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .course_container {
+    margin: 32px 32px;
+  }
+
+  .course_container a {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .row_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .course_container {
+    padding-top: 32px;
+  }
+}

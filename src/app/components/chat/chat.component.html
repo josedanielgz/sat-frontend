@@ -1,0 +1,30 @@
+<div class="chat_container">
+  <div class="chat" style="overflow: scroll; height: xyz">
+    <div
+      *ngFor="let item of chat"
+      [ngClass]="code === item.transmitter.code ? 'msg_out' : 'msg_in'"
+    >
+      <div
+        [ngClass]="code === item.transmitter.code ? 'text_out' : 'text_in'"
+        class="animate__animated animate__bounceIn"
+      >
+        <span>{{ item.transmitter.name }}: </span>
+        {{ item.message }}
+      </div>
+      <p>
+        {{ item.date | date: "EEEE d MMM ; h:mm a" }}
+      </p>
+    </div>
+  </div>
+
+  <form [formGroup]="formChat" (submit)="sendMessage()" class="form_input">
+    <input
+      type="text"
+      name="message"
+      id="message"
+      formControlName="message"
+      placeholder="Escriba su mensaje..."
+    />
+    <i (click)="sendMessage()" class="fas fa-paper-plane pointer"></i>
+  </form>
+</div>

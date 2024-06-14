@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+<div class="report_container animate__animated animate__fadeIn">
+  <div class="title_header">
+    <a class="pointer" (click)="goBack()"><i class="fas fa-arrow-left"></i></a>
+    <h1>Generar Reportes</h1>
+  </div>
+  <div class="list_reports">
+    <div class="report last">
+      <div class="last_option">
+        <p>Crear reportes por sugerencia</p>
+        <input type="checkbox" name="showLastReport" id="showLastReport" />
+        <label for="showLastReport"><i class="fas fa-chevron-down"></i></label>
+        <app-loading class="loading" *ngIf="loading"></app-loading>
+        <div class="tarjet" *ngIf="!loading && lastReport">
+          <p>
+            El último reporte se generó para las sugerencias que fuerón
+            <strong>{{
+              lastReport.action === "rejected" ? "RECHAZADAS" : "ACEPTADAS"
+            }}</strong>
+            desde el dia
+            <strong>{{
+              lastReport.startDate | date: "EEEE, MMMM d, y"
+            }}</strong>
+            hasta el dia
+            <strong>{{ lastReport.endDate | date: "EEEE, MMMM d, y" }}</strong
+            >.
+          </p>
+          <blockquote>
+            - Fecha del reporte:
+            {{ lastReport.date | date: "EEEE, MMMM d, y, h:mm:ss " }}
+          </blockquote>
+        </div>
+      </div>
+      <img src="/assets/image/reporte_periodo.jpg" alt="imagen de reporte" />
+      <form class="report" name="stateSuggestion" (submit)="onSubmit($event)">
+        <div class="dates">
+          <div class="date">
+            <div class="form_input">
+              <label for="from">Desde:</label>
+              <input
+                type="date"
+                name="from"
+                id="from"
+                value="{{ today | date: 'yyyy-MM-dd' }}"
+              />
+            </div>
+          </div>
+          <div class="date">
+            <div class="form_input">
+              <label for="to">Hasta:</label>
+              <input
+                type="date"
+                name="to"
+                id="to"
+                value="{{ today | date: 'yyyy-MM-dd' }}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="date">
+          <div class="form_input">
+            <label for="toSelect">Sugerencia</label>
+            <select name="toSelect" id="toSelect">
+              <option value="accepted">Aceptada</option>
+              <option value="rejected">Rechazada</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit">
+          Generar reporte <i *ngIf="!loadingReport" class="fas fa-file-pdf"></i
+          ><i *ngIf="loadingReport" class="fas fa-spinner fa-pulse fa-fw"></i>
+        </button>
+        <div class="line"></div>
+      </form>
+    </div>
+    <div class="report">
+      <p>Crear reportes por periodos</p>
+      <img src="/assets/image/reporte_periodo.jpg" alt="imagen de reporte" />
+      <div class="select_dates">
+        <div class="form_input">
+          <label for="from">Desde</label>
+          <select name="from" id="from">
+            <option selected value="2010-1">2010-1</option>
+            <option value="2010-1">2010-2</option>
+          </select>
+        </div>
+        <div class="form_input">
+          <label for="from">Hasta</label>
+          <select name="from" id="from">
+            <option value="2010-1">2010-1</option>
+            <option selected value="2010-1">2010-2</option>
+          </select>
+        </div>
+      </div>
+      <button>Descargar <i class="fas fa-download"></i></button>
+      <div class="line"></div>
+    </div>
+    <div class="report last">
+      <p>Crear reporte general</p>
+      <img src="/assets/image/reporte_general.jpg" alt="imagen de reporte" />
+      <button>Descargar <i class="fas fa-download"></i></button>
+      <div class="line"></div>
+    </div>
+  </div>
+</div>
+
+<app-floating-button class="floating"></app-floating-button>

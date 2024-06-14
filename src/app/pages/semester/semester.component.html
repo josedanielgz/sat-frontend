@@ -1,0 +1,45 @@
+<div class="wrapper_faculties">
+  <h1 class="animate__animated animate__fadeIn">{{ program }}</h1>
+  <form
+    [formGroup]="formSearch"
+    (submit)="onSubmit()"
+    class="form_input animate__animated animate__fadeIn"
+  >
+    <input
+      type="text"
+      placeholder="Buscar estudiante (Código | Correo)"
+      id="filter"
+      autocomplete="off"
+      formControlName="filter"
+      name="filter"
+    />
+    <i
+      *ngIf="!loadingSearch"
+      class="fas fa-search fa-fw pointer"
+      (click)="onSubmit()"
+    ></i>
+    <i *ngIf="loadingSearch" class="fas fa-spinner fa-spin fa-fw"></i>
+  </form>
+  <div *ngIf="filter.invalid && (filter.dirty || filter.touched)" class="red">
+    <p>Escriba un código o correo valido</p>
+  </div>
+
+  <div class="row_header">
+    <app-statistics-risk></app-statistics-risk>
+  </div>
+
+  <div class="list_semester">
+    <app-loading *ngIf="loading"></app-loading>
+    <ul *ngIf="!loading">
+      <li
+        *ngFor="let semester of semesters"
+        routerLink="/vicerrector/semestre/{{ program }}/{{ semester }}"
+        class="animate__animated animate__fadeIn"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Periodo {{ semester }}
+      </li>
+    </ul>
+  </div>
+</div>

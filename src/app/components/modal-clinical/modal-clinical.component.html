@@ -1,0 +1,99 @@
+<div class="wrapper_alert" (click)="onClick($event)">
+  <div class="alert_container">
+    <div class="title">
+      <h3>Historia de la cita</h3>
+      <i class="fas fa-times red pointer" (click)="close()"></i>
+    </div>
+    <hr />
+
+    <div class="info_meet">
+      <p>
+        <span>Fecha:</span>
+        {{ meetClinical.dateFormat | date: "MMM d, y, hh:mm a" }}
+      </p>
+    </div>
+
+    <div class="list_info">
+      <div class="reason_consultation">
+        <h3>Motivo de la consulta</h3>
+        <p>
+          {{ meetClinical.meetClinical.reasonConsultation }}
+        </p>
+      </div>
+      <div class="reason_consultation">
+        <h3>Enfermedad general</h3>
+        <p>
+          {{ meetClinical.meetClinical.generalIllness }}
+        </p>
+      </div>
+      <div class="reason_consultation">
+        <h3>Revisión por sistemas</h3>
+        <p>
+          {{ meetClinical.meetClinical.systemsReview }}
+        </p>
+      </div>
+      <div class="list_results">
+        <div class="result">
+          <p>
+            <span>F. CARDÍACA: </span
+            >{{ meetClinical.meetClinical.heartRate }} LPM
+          </p>
+        </div>
+        <div class="result">
+          <p>
+            <span>TEMPERATURA: </span
+            >{{ meetClinical.meetClinical.temperature }} °C
+          </p>
+        </div>
+        <div class="result">
+          <p>
+            <span>F. RESPIRATORIA: </span
+            >{{ meetClinical.meetClinical.breathingFrequency }} RPM
+          </p>
+        </div>
+        <div class="result">
+          <p><span>PESO: </span>{{ meetClinical.meetClinical.weight }} KG</p>
+        </div>
+        <div class="result">
+          <p>
+            <span>TENSIÓN ARTERIAL: </span
+            >{{ meetClinical.meetClinical.bloodPressure }}
+          </p>
+        </div>
+        <div class="result">
+          <p><span>TALLA: </span>{{ meetClinical.meetClinical.size }} CM</p>
+        </div>
+      </div>
+      <div class="list_results_observations">
+        <form
+          [formGroup]="formObservation"
+          (submit)="onSubmitObservation()"
+          class="history_clinical"
+        >
+          <div class="inputs_observations">
+            <div class="form_textarea">
+              <p>Observaciones</p>
+              <textarea
+                formControlName="observation"
+                id="observation"
+                name="observation"
+              ></textarea>
+            </div>
+          </div>
+          <div class="btn_options">
+            <button *ngIf="isEditObservation" class="cancel">
+              Cancelar <i class="fas fa-times-circle"></i>
+            </button>
+            <button *ngIf="isEditObservation" type="submit">
+              Guardar <i type="submit" class="fas fa-save"></i
+              ><i class="fa-pulse fa-fw"></i>
+            </button>
+            <button *ngIf="!isEditObservation" (click)="enableObservation()">
+              Editar <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

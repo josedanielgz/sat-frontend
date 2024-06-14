@@ -1,0 +1,17 @@
+<div class="content">
+  <div class="title animate__animated animate__fadeIn">
+    <a class="pointer" (click)="goBack()"><i class="fas fa-arrow-left"></i></a>
+    <h1>{{ title.title }}</h1>
+  </div>
+  <div class="form_input">
+    <input
+      type="text"
+      name="filter"
+      autocomplete="off"
+      id="filter"
+      placeholder="Buscar"
+      #filter
+    />
+    <i class="fas fa-times red pointer" (click)="cleanInput()"></i>
+  </div>
+</div>

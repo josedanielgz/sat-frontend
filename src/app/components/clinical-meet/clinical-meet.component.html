@@ -1,0 +1,134 @@
+<div class="wrapper_history_meet animate__animated animate__fadeIn">
+  <div class="title_history_meet">
+    <h3>Cita Médica</h3>
+    <button
+      (click)="onSubmit()"
+      [disabled]="formHistoryMeet.invalid || loading"
+    >
+      Guardar <i *ngIf="!loading" class="fas fa-save"></i
+      ><i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+    </button>
+  </div>
+
+  <div class="info_meet">
+    <p *ngIf="!loadingMeet">
+      <span>Fecha:</span> {{ dateMeet | date: "MMM d, y, hh:mm a" }}
+    </p>
+    <p *ngIf="loadingMeet"><span>Fecha:</span> Cargando...</p>
+  </div>
+
+  <form [formGroup]="formHistoryMeet" (submit)="onSubmit()" class="list_text">
+    <div class="text_insert">
+      <p>1. MOTIVO DE LA CONSULTA</p>
+      <textarea
+        formControlName="reasonConsultation"
+        id="reasonConsultation"
+        name="reasonConsultation"
+        rows="1"
+      ></textarea>
+    </div>
+
+    <div class="text_insert">
+      <p>2. ENFERMEDAD GENERAL</p>
+      <textarea
+        formControlName="generalIllness"
+        id="generalIllness"
+        name="generalIllness"
+        rows="1"
+      ></textarea>
+    </div>
+
+    <div class="text_insert">
+      <p>3. REVISIÓN POR SISTEMAS</p>
+      <textarea
+        formControlName="systemsReview"
+        id="systemsReview"
+        name="systemsReview"
+        rows="1"
+      ></textarea>
+    </div>
+
+    <div class="list_measurements">
+      <div class="measure">
+        <label for="heartRate" title="Latidos por minuto"
+          >F. CARDÍACA (LPM)</label
+        >
+        <div class="input_icon">
+          <i class="fas fa-comment-medical"></i>
+          <input
+            id="heartRate"
+            formControlName="heartRate"
+            name="heartRate"
+            type="number"
+          />
+        </div>
+      </div>
+      <div class="measure">
+        <label for="breathingFrequency" title="Respiraciones por minuto"
+          >F. RESPIRATORIA (RPM)</label
+        >
+        <div class="input_icon">
+          <i class="fas fa-comment-medical"></i>
+          <input
+            id="breathingFrequency"
+            formControlName="breathingFrequency"
+            name="breathingFrequency"
+            type="number"
+          />
+        </div>
+      </div>
+      <div class="measure">
+        <label for="bloodPressure">TENSIÓN ARTERIAL</label>
+        <div class="input_icon">
+          <i class="fas fa-comment-medical"></i>
+          <input
+            id="bloodPressure"
+            autocomplete="off"
+            placeholder="120/60"
+            formControlName="bloodPressure"
+            name="bloodPressure"
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="list_measurements">
+      <div class="measure">
+        <label for="temperature">TEMPERATURA (°C)</label>
+        <div class="input_icon">
+          <i class="fas fa-comment-medical"></i>
+          <input
+            id="temperature"
+            formControlName="temperature"
+            name="temperature"
+            type="number"
+          />
+        </div>
+      </div>
+      <div class="measure">
+        <label for="weight">PESO (KG)</label>
+        <div class="input_icon">
+          <i class="fas fa-comment-medical"></i>
+          <input
+            id="weight"
+            formControlName="weight"
+            name="weight"
+            type="number"
+          />
+        </div>
+      </div>
+      <div class="measure">
+        <label for="size">TALLA (CM)</label>
+        <div class="input_icon">
+          <i class="fas fa-comment-medical"></i>
+          <input id="size" formControlName="size" name="size" type="number" />
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="formHistoryMeet.invalid || loading">
+      Guardar <i *ngIf="!loading" class="fas fa-save"></i
+      ><i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+    </button>
+  </form>
+</div>

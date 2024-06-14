@@ -1,0 +1,106 @@
+.content {
+  margin: 16px;
+  text-align: center;
+}
+.content h1 {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.content h4 {
+  font-weight: bold;
+  font-size: 18px;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+}
+.semester_credits {
+  display: flex;
+  justify-content: space-around;
+}
+.teacher {
+  flex-direction: row;
+}
+.shedule {
+  flex-direction: row;
+}
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.notes h3 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.text {
+  width: 280px;
+  text-align: left;
+  font-size: 18px;
+}
+.text b {
+  font-weight: bold;
+}
+.title_qualification {
+  font-weight: bold;
+}
+.line {
+  margin: 10px;
+}
+/* table */
+@media (min-width: 768px) {
+  .content {
+    margin: 10px 120px;
+  }
+  .content h1 {
+    margin-bottom: 30px;
+    font-size: 40px;
+  }
+  .content h4 {
+    font-size: 25px;
+  }
+  .content p {
+    font-size: 25px;
+  }
+
+  .home {
+    padding: 0px 20px;
+  }
+
+  .notes h3 {
+    font-size: 22px;
+  }
+  .notes {
+    margin-bottom: 30px;
+  }
+  .text {
+    width: 600px;
+  }
+  .title_qualification {
+    font-size: 25px;
+  }
+}
+
+/* desktop */
+@media (min-width: 1152px) {
+  .content {
+    width: 50vw;
+    margin: 20px;
+  }
+  .loading {
+    width: 50vw;
+  }
+  .content h1 {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+  .text {
+    width: 500px;
+  }
+  .home h4,
+  .home p {
+    font-size: 18px;
+  }
+}

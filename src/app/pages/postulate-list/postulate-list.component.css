@@ -1,0 +1,11 @@
+.wrapper_postulate {
+  margin-top: 48px;
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_postulate {
+    margin-top: 80px;
+  }
+}

@@ -1,0 +1,25 @@
+<div
+  class="wrapper_alert animate__animated animate__fadeIn"
+  (click)="onClick($event)"
+>
+  <form [formGroup]="formFilter" (submit)="filter()" class="alert_container">
+    <div>
+      <h1>Filtrar citas</h1>
+      <div class="form_input">
+        <label for="date">Fecha</label>
+        <input type="date" id="date" name="date" formControlName="date" />
+      </div>
+      <div class="form_input">
+        <label for="state">Estado</label>
+        <select name="state" id="state" formControlName="state">
+          <option class="ACEPTADA">ACEPTADA</option>
+          <option class="RECHAZADA">RECHAZADA</option>
+          <option class="SIN RESPONDER">SIN RESPONDER</option>
+        </select>
+      </div>
+    </div>
+    <div class="alert_options">
+      <button [disabled]="formFilter.invalid" type="submit">Aplicar</button>
+    </div>
+  </form>
+</div>

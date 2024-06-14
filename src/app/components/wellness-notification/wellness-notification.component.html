@@ -1,0 +1,26 @@
+<div class="content">
+  <div class="title_icon">
+    <div class="title">
+      <h1>SocioEconomico</h1>
+    </div>
+    <div class="icon"><h4>98%</h4></div>
+  </div>
+  <p>Lista de beneficios disponibles para el estudiante</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of servicesWellness">
+        <td>{{item.num}}</td>
+        <td>{{item.name}}</td>
+        <td><button class="btable">{{item.isActive}} </button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="button">Agendar proxima cita</button>
+</div>

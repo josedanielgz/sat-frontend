@@ -1,0 +1,140 @@
+.wrapper_faculties {
+  margin: 48px 16px 32px 16px;
+  text-align: center;
+}
+
+.wrapper_faculties h1 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.form_input {
+  background: var(--gray-menu);
+}
+
+.form_input i {
+  color: var(--red-primary-color);
+}
+
+.accordion {
+  background: var(--white);
+  border-radius: 10px;
+  max-width: 750px;
+  overflow: hidden;
+  margin-top: 32px;
+}
+
+.item label {
+  background: var(--gray-menu);
+  display: block;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+}
+
+.item label::before {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f107";
+  right: 10px;
+  color: var(--red-primary-color);
+  transition: all 0.5s;
+}
+
+.item div {
+  max-height: 0;
+  overflow: auto;
+  background: var(--gray-menu);
+  transition: max-height 0.5s;
+  text-align: left;
+  position: relative;
+}
+
+.item div ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.item div ul li:hover {
+  background: #e2e1e1;
+}
+
+.item div ul li::before {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f105";
+  right: 10px;
+  color: var(--red-primary-color);
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked ~ div {
+  max-height: 100vh;
+}
+
+input[type="checkbox"]:checked ~ label::before {
+  transform: rotate(-180deg);
+  transition: transform 0.5s;
+}
+
+.row_header {
+  margin-top: 32px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .wrapper_faculties h1 {
+    font-size: 25px;
+    margin-bottom: 32px;
+  }
+
+  .accordion {
+    padding: 20px;
+  }
+
+  .item label,
+  .item div ul li {
+    font-size: 20px;
+  }
+
+  .form_input {
+    margin: auto;
+    width: 50vw;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_faculties {
+    margin: 80px 16px 32px 16px;
+    text-align: center;
+  }
+
+  .wrapper_faculties h1 {
+    margin-bottom: 16px;
+  }
+
+  .accordion {
+    margin: 0 auto;
+  }
+
+  .form_input {
+    width: 40vw;
+  }
+
+  .item div {
+    overflow: hidden;
+  }
+}

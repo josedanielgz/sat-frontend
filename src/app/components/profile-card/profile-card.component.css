@@ -1,0 +1,194 @@
+button {
+  background: var(--green-primary-color);
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+button:hover {
+  background: #0f9946;
+}
+
+input[type="checkbox"] {
+  background: white;
+  border: none;
+  outline: none;
+  color: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.card_profile {
+  margin: 16px;
+  text-align: center;
+}
+
+.card_profile > p {
+  margin-top: 16px;
+}
+
+.info_student {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.data_student {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.program {
+  max-width: 120px;
+}
+
+.info_student a {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.info_student label {
+  border: 1px solid var(--red-primary-color);
+  border-radius: 5px;
+  padding: 4px 12px;
+  color: var(--red-primary-color);
+}
+
+.info_student label:hover {
+  border: 1px solid var(--white);
+  background: var(--red-primary-color);
+  color: var(--white);
+}
+
+.description h3 {
+  font-weight: bold;
+}
+
+.description p {
+  font-size: 14px;
+}
+
+.description p i {
+  margin-right: 8px;
+}
+
+.description p:nth-child(2) {
+  color: var(--gray-dark-color);
+}
+
+.data_student {
+  margin: 10px 0;
+}
+
+.data_student div p {
+  font-weight: bold;
+}
+
+.data_student div h4 {
+  color: var(--gray-dark-color);
+  font-weight: bold;
+}
+
+.menu-options {
+  position: relative;
+}
+
+.menu-options ul {
+  list-style: none;
+  position: absolute;
+  right: 0;
+  background: var(--gray-menu);
+  border: 2px solid var(--gray-dark-color);
+  padding: 8px 16px;
+  margin-top: 5px;
+  width: 220px;
+  text-align: left;
+  display: none;
+}
+
+#showOptions:checked ~ ul {
+  display: block;
+}
+
+#showOptions:checked ~ label i::before {
+  content: "\f0de";
+}
+
+.menu-options ul li {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu-options ul li:hover {
+  background: var(--gray-dark-color);
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 250px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  button {
+    width: 320px;
+    height: 60px;
+    margin-top: 32px;
+  }
+  .card_profile {
+    margin: 32px 64px;
+  }
+
+  .card_profile * {
+    font-size: 25px;
+  }
+
+  .description p {
+    font-size: 25px;
+  }
+
+  .data_student {
+    margin: 32px 0px;
+    justify-content: space-evenly;
+  }
+
+  .info_student a {
+    font-size: 25px;
+  }
+
+  .info_student label {
+    border: 1px solid var(--red-primary-color);
+    border-radius: 5px;
+    padding: 8px 16px;
+  }
+
+  .menu-options ul {
+    width: 300px;
+  }
+  .loading {
+    margin-top: 500px;
+  }
+}
+/*  Desktop*/
+@media (min-width: 1152px) {
+  .card_profile {
+    margin: 0px;
+    height: 80vh;
+  }
+
+  .data_student {
+    justify-content: space-evenly;
+  }
+
+  button {
+    width: 320px;
+    height: 60px;
+    margin-top: 1px;
+  }
+}

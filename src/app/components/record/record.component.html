@@ -1,0 +1,93 @@
+<br />
+<div class="wrapper_record animate__animated animate__fadeIn">
+  <div class="risks_options">
+    <div
+      class="risk_option pointer"
+      [ngClass]="{ risk_active: risk === 'socioeconomico' }"
+      (click)="updateRisk('socioeconomico')"
+    >
+      <h4>Riesgo <span>Socieconómico</span></h4>
+    </div>
+    <div
+      class="risk_option pointer"
+      [ngClass]="{ risk_active: risk === 'academico' }"
+      (click)="updateRisk('academico')"
+    >
+      <h4>Riesgo <span>Académico</span></h4>
+    </div>
+    <div
+      class="risk_option pointer"
+      [ngClass]="{ risk_active: risk === 'institucional' }"
+      (click)="updateRisk('institucional')"
+    >
+      <h4>Riesgo <span>Institucional</span></h4>
+    </div>
+    <div
+      class="risk_option pointer"
+      [ngClass]="{ risk_active: risk === 'individual' }"
+      (click)="updateRisk('individual')"
+    >
+      <h4>Riesgo <span>Individual</span></h4>
+    </div>
+  </div>
+  <div class="scrollable">
+    <div class="timeline" id="timeline">
+      <div class="center-line" *ngIf="!loading && profits.length">
+        <a href="/estudiante/ver-historial#timeline" class="scroll-icon pointer"
+          ><i class="fas fa-caret-up"></i
+        ></a>
+      </div>
+
+      <app-loading class="loading" *ngIf="loading"></app-loading>
+
+      <div class="empty" *ngIf="!loading && !profits.length">
+        <p>
+          No se encontraron beneficios en el riesgo
+          {{ risk }} para el estudiante
+        </p>
+      </div>
+
+      <ng-container *ngIf="!loading">
+        <div
+          *ngFor="let profit of profits | orderBy; let i = index"
+          class="row row-{{ (i + 1) % 2 === 0 ? '2' : '1' }}"
+        >
+          <section class="animate__animated animate__fadeIn">
+            <i class="icon fas fa-briefcase"></i>
+            <div class="details">
+              <span class="title">{{ profit.nombre }}</span>
+              <span>{{ profit.fechaInicio | date: "y" }}</span>
+            </div>
+            <p>{{ profit.descripcion }}</p>
+            <div class="bottom">
+              <a title="Semestres activos">{{ profit.semestre }}</a>
+              <i>
+                {{ profit.fechaInicio | date: "d MMM" }} -
+                {{
+                  profit.fechaFinal
+                    ? (profit.fechaFinal | date: "d MMM")
+                    : "Actual"
+                }}</i
+              >
+            </div>
+          </section>
+        </div>
+      </ng-container>
+
+      <!-- <div class="row row-2">
+        <section>
+          <i class="icon fas fa-utensils"></i>
+          <div class="details">
+            <span class="title">Servicio de restaurante</span>
+            <span>2020</span>
+          </div>
+          <p>Ayuda de alimentación saludable</p>
+          <div class="bottom">
+            <a title="Semestres activos">2</a>
+            <i> 25 Feb - 23 Dic</i>
+          </div>
+        </section>
+      </div> -->
+    </div>
+  </div>
+</div>

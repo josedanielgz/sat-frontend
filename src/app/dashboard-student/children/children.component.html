@@ -1,0 +1,8 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="profile_container" *ngIf="!loading">
+  <app-profile-card class="card"></app-profile-card>
+  <div class="children_wrapper" id="contenedor">
+    <router-outlet></router-outlet>
+  </div>
+</div>

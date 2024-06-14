@@ -1,0 +1,41 @@
+.app_wrapper {
+  margin-top: 0;
+  margin-bottom: 135px;
+}
+
+.floating {
+  position: fixed;
+  left: 8px;
+  top: 8px;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1151px) {
+  .app_wrapper {
+    margin: 120px 0;
+  }
+
+  .floating {
+    position: fixed;
+    left: unset;
+    top: unset;
+    right: 32px;
+    bottom: 32px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1152px) {
+  .app_wrapper {
+    margin: 50px 0;
+    margin-bottom: 0;
+  }
+
+  .floating {
+    position: fixed;
+    left: unset;
+    top: unset;
+    right: 32px;
+    bottom: 32px;
+  }
+}

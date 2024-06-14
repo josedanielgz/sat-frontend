@@ -1,0 +1,63 @@
+<div
+  class="table_students animate__animated animate__fadeIn"
+  infiniteScroll
+  (scrolled)="scrollDown()"
+>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th class="pointer">Riesgo</th>
+        <th class="filter">
+          Estado
+          <i
+            *ngIf="showFilter"
+            class="fas fa-filter pointer"
+            (click)="showOptions()"
+          ></i>
+          <ul class="options" *ngIf="show">
+            <li (click)="filterStudents('ALUMNO DE PRIMER SEMESTRE')">
+              ALUMNO DE PRIMER SEMESTRE
+            </li>
+            <li (click)="filterStudents('MATRICULA INCLUSIONES-CANCELACIONES')">
+              MATRICULA INCLUSIONES-CANCELACIONES
+            </li>
+            <li (click)="filterStudents('SEMESTRE CANCELADO')">
+              SEMESTRE CANCELADO
+            </li>
+            <li (click)="filterStudents()">TODOS</li>
+          </ul>
+        </th>
+        <th>Permanencia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="loading || !listStudents.length">
+        <td colspan="6">Cargando...</td>
+      </tr>
+      <ng-container *ngIf="!loading && listStudents.length">
+        <tr
+          *ngFor="let student of listStudents; let i = index"
+          class="animate__animated animate__fadeIn"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>{{ student.codigo }}</td>
+          <td>{{ student.nombre }} {{ student.apellido }}</td>
+          <td>
+            <i class="fas fa-circle {{ getColorRisk(student.riesgo) }}"></i>
+          </td>
+          <td>{{ student.estado | uppercase }}</td>
+          <td class="pointer" (click)="navigateToStudent(student)">
+            <i class="fas fa-chevron-right"></i>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+<p class="red" *ngIf="loadingMore">
+  Cargando <i class="fas fa-spinner fa-pulse"></i>
+</p>
+<app-download-pdf [students]="listStudents" *ngIf="!loading"></app-download-pdf>

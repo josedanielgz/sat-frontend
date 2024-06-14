@@ -1,0 +1,33 @@
+<div class="profile_academy">
+  <div *ngIf="user.rol === 'vicerrector'" class="wrapper_course">
+    <h5 class="">
+      Materias que se encuentran activas durante el semestre actual.
+    </h5>
+  </div>
+  <app-academy-list-course></app-academy-list-course>
+  <p>Se muestran los promedios academicos del estudiante:</p>
+  <div class="date_start">
+    <h4>Fecha de ingreso a la Universidad :</h4>
+    <div class="date_buton">
+      <p>{{ user.fechaingreso | date: "dd MMMM yyyy" }}</p>
+      <button (click)="onNavigatePermanence()">ver Permanecia</button>
+    </div>
+  </div>
+  <div class="info_academy">
+    <p>
+      <span>Promedio Ponderado Acomulado </span
+      ><span>{{ user?.promedioponderadoacomulado }}</span>
+    </p>
+    <p>
+      <span>Créditos aprobados</span> <span>{{ user.creditosaprobados }}</span>
+    </p>
+    <p title="Promedio ponderado acomulado actual">
+      <span>Promedio acomulado</span> <span>{{ user.promedio }}</span>
+    </p>
+    <p>
+      <span>Créditos totales actuales</span
+      ><span>{{ user.creditostotales }}</span>
+    </p>
+  </div>
+  <br />
+</div>

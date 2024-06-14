@@ -1,0 +1,325 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content {
+  background: var(--gray-menu);
+  border-radius: 25px;
+  text-align: center;
+  width: 280px;
+}
+
+.content * {
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 18px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.asist textarea {
+  width: 100%;
+  height: 100px;
+  margin: 16px auto;
+  padding: 16px;
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+.date_icon {
+  display: flex;
+  width: 240px;
+}
+
+.date {
+  width: 160px;
+  text-align: left;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 100px;
+}
+
+.icon i {
+  background: var(--red-primary-color);
+  width: 51px;
+  height: 51px;
+  border-radius: 30px;
+  color: white;
+  line-height: 50px;
+  font-size: 31px;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  padding: 16px;
+}
+
+.asist {
+  margin: 16px;
+}
+
+button {
+  margin: 0px 10px;
+  width: 200px;
+  border-radius: 25px;
+}
+
+h5 {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+h5 span {
+  margin: 10px;
+  font-size: 12px;
+}
+
+.role {
+  text-transform: uppercase;
+}
+
+.b2 {
+  background: var(--green-primary-color);
+}
+
+.table_meet {
+  position: relative;
+  margin: 16px;
+  width: 100vw;
+  overflow-x: scroll;
+  text-align: center;
+}
+
+.table_meet p {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+table {
+  width: max-content;
+  margin: auto;
+}
+
+th {
+  font-weight: bold;
+  padding: 15px;
+}
+
+table tbody tr:nth-child(odd) {
+  background: var(--gray-table);
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .content {
+    width: 422px;
+    margin: 20px 184px;
+    border-radius: 35px;
+  }
+
+  .content * {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  .date_icon {
+    display: flex;
+    width: 422px;
+  }
+
+  .date {
+    width: 260px;
+    text-align: left;
+  }
+
+  .icon {
+    width: 180px;
+    height: 150px;
+  }
+
+  .icon i {
+    width: 90px;
+    height: 90px;
+    border-radius: 60px;
+    line-height: 80px;
+    font-size: 50px;
+  }
+
+  h3 {
+    font-size: 35px;
+    margin: 15px;
+    font-weight: bold;
+  }
+
+  button {
+    margin: 0px 10px;
+    width: 200px;
+    border-radius: 25px;
+    font-size: 30px;
+  }
+
+  h5 {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  h5 span {
+    font-size: 22px;
+  }
+
+  .table_meet {
+    width: 90%;
+    margin: 32px auto;
+  }
+
+  .table_meet p {
+    margin-bottom: 16px;
+  }
+  .no_meet_p {
+    font-size: 30px;
+  }
+  table {
+    width: 100%;
+    position: initial;
+  }
+
+  th {
+    font-size: 20px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .container {
+    height: 490px;
+    margin-top: 16px;
+    overflow-y: scroll;
+    width: 50vw;
+  }
+
+  .content {
+    width: 400px;
+    margin: 20px;
+    border-radius: 35px;
+    padding-bottom: 16px;
+  }
+
+  .table_meet p {
+    margin-bottom: 16px;
+  }
+
+  .asist {
+    margin: 0;
+    padding: 0;
+  }
+
+  .asist textarea {
+    width: 60%;
+    height: 100px;
+    margin: 8px auto;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .buttons {
+    padding: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .date_icon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    align-items: center;
+  }
+
+  .date {
+    text-align: left;
+  }
+
+  .icon {
+    width: 220px;
+  }
+
+  .icon i {
+    width: 90px;
+    height: 90px;
+    border-radius: 60px;
+    line-height: 80px;
+    font-size: 50px;
+  }
+
+  h3 {
+    font-size: 35px;
+    margin: 8px;
+    font-weight: bold;
+  }
+
+  button {
+    border-radius: 25px;
+    font-size: 30px;
+  }
+
+  h5 {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  h5 span {
+    margin: 0px;
+    font-size: 22px;
+  }
+
+  .table_meet {
+    width: 90%;
+    margin: 32px auto;
+  }
+
+  table {
+    width: 100%;
+    position: initial;
+  }
+
+  th {
+    font-size: 20px;
+    padding: 0px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+
+  .no_meet_p {
+    font-size: 20px;
+  }
+}

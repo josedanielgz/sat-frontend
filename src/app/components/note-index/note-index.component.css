@@ -1,0 +1,41 @@
+.course {
+  text-align: center;
+  width: 60px;
+  margin: 10px 0px;
+}
+
+.qualification {
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bad {
+  background: var(--red-primary-color);
+}
+
+.regular {
+  background: var(--green-primary-color);
+}
+
+.good {
+  background: var(--orange-primary-color);
+}
+
+.empty {
+  background: var(--gray-menu);
+}
+
+/* table */
+@media (min-width: 768px) {
+  .course {
+    text-align: center;
+    width: 120px;
+    margin: 10px 0px;
+  }
+
+  .title_course h3 {
+    font-size: 20px;
+  }
+}

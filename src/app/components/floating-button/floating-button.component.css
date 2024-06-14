@@ -1,0 +1,161 @@
+input[type="checkbox"] {
+  display: none;
+}
+
+.red {
+  color: var(--red-primary-color) !important;
+}
+
+.notifications {
+  width: 40px;
+  height: 40px;
+  color: var(--white);
+  background: var(--red-primary-color);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.notifications label {
+  cursor: pointer;
+}
+
+.notifications i {
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.list_notification {
+  background: var(--gray-menu);
+  position: relative;
+  padding: 12px 0;
+  width: 95vw;
+  border-radius: 10px;
+  display: none;
+  border: 1px solid var(--dark-color);
+}
+
+.list_notification h4 {
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-left: 8px;
+}
+
+.list_notification hr {
+  background: black;
+}
+
+.list_notification ul {
+  list-style: none;
+}
+
+.list_notification ul li {
+  padding: 0 8px;
+  display: grid;
+  grid-template-columns: 1fr 20px;
+}
+
+.list_notification ul li div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.list_notification ul li.no_read,
+.list_notification ul li:hover {
+  background: #d1d0d0;
+}
+
+.list_notification ul li i {
+  font-size: 20px;
+  line-height: 50px;
+  color: var(--dark-color);
+}
+
+#floating:checked ~ .list_notification {
+  display: block;
+}
+
+#floating:checked ~ .notifications label i::before {
+  content: "\f00d";
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1151px) {
+  .notifications {
+    width: 80px;
+    height: 80px;
+  }
+
+  .notifications i {
+    font-size: 40px;
+    line-height: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  .list_notification {
+    width: 50vw;
+    height: 400px;
+    overflow-y: scroll;
+    position: absolute;
+    right: 0;
+    bottom: 80px;
+    padding: 8px;
+  }
+
+  .list_notification h4 {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .list_notification ul li {
+    padding: 8px 0;
+  }
+
+  .list_notification ul li p {
+    font-size: 20px;
+  }
+
+  .list_notification ul li span {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1152px) {
+  .notifications {
+    width: 60px;
+    height: 60px;
+  }
+
+  .notifications i {
+    font-size: 30px;
+    line-height: 60px;
+  }
+}
+
+.animate_button {
+  animation: animacionRed 2s linear infinite;
+}
+
+@keyframes animacionRed {
+  0% {
+    box-shadow: 0 0 0 0 var(--red-primary-color),
+      0 0 0 0 var(--red-primary-color);
+  }
+
+  30% {
+    box-shadow: 0 0 0 20px rgba(29, 171, 209, 0),
+      0 0 0 0 var(--red-primary-color);
+  }
+
+  65% {
+    box-shadow: 0 0 0 20px rgba(29, 171, 209, 0),
+      0 0 0 30px rgba(29, 171, 209, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(29, 171, 209, 0), 0 0 0 20px rgba(29, 171, 209, 0);
+  }
+}

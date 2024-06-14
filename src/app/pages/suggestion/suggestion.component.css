@@ -1,0 +1,249 @@
+.suggestion_container {
+  margin-top: 48px;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.suggestion_options {
+  margin: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid var(--gray-dark-color);
+  border-bottom: 2px solid var(--gray-dark-color);
+  padding: 8px 16px;
+  position: relative;
+}
+
+.suggestion_options .actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.suggestion_options .actions label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.suggestion_options .actions label input {
+  margin-left: 8px;
+}
+
+.suggestion_options .actions * {
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.loading {
+  margin-top: 16px;
+}
+
+ul {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: var(--gray-menu);
+  list-style: none;
+  padding: 8px 16px;
+  border: 1px solid var(--gray-dark-color);
+}
+
+ul li {
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+#onShow {
+  display: none;
+}
+
+#onShow:checked ~ ul {
+  display: block;
+}
+
+.filter i {
+  color: var(--red-primary-color) !important;
+}
+
+.suggestion_options i {
+  color: var(--dark-color);
+  font-size: 18px;
+}
+
+.suggestion_options > i {
+  color: var(--red-primary-color);
+}
+
+.table {
+  max-width: 100%;
+  overflow-x: scroll;
+  margin: 16px;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: bold;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+table thead tr {
+  background: var(--gray-menu);
+}
+
+table tbody tr {
+  cursor: pointer;
+}
+
+.selection {
+  background: var(--red-primary-color);
+  color: white;
+}
+
+label {
+  display: table-row;
+}
+
+.pagination {
+  margin: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.pagination a {
+  border: 1px solid var(--red-primary-color);
+  color: var(--red-primary-color);
+  border-radius: 5px;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 8px;
+  text-align: center;
+}
+
+.pagination a:hover,
+.page_active {
+  color: white !important;
+  background: var(--red-primary-color);
+}
+
+.list_filter {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list_filter label {
+  margin-right: 16px;
+}
+
+.form_input {
+  width: 250px;
+  margin-top: 0;
+}
+
+.form_input select {
+  appearance: none;
+  border: none;
+  outline: none;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.form_input label {
+  width: 80px;
+}
+
+.byRisk,
+.byDate,
+.byRole,
+.byProfit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+button {
+  width: 250px;
+  height: 50px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .suggestion_options,
+  .table,
+  .pagination {
+    margin: 16px auto;
+    width: 80%;
+  }
+
+  .byRisk,
+  .byDate,
+  .byRole,
+  .byProfit {
+    flex-wrap: nowrap;
+  }
+
+  button {
+    width: 100px;
+  }
+  p,
+  label,
+  ul li,
+  input,
+  select {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .suggestion_container {
+    margin-top: 80px;
+  }
+
+  .suggestion_options,
+  .table,
+  .pagination {
+    margin: 8px auto;
+    width: 60%;
+  }
+
+  .byRisk,
+  .byDate,
+  .byRole,
+  .byProfit {
+    flex-wrap: nowrap;
+    margin: 0;
+  }
+
+  .list_filter {
+    margin: 0;
+  }
+
+  button {
+    width: 100px;
+    height: 50px;
+    margin: 0;
+  }
+}

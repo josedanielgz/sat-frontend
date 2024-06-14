@@ -1,0 +1,140 @@
+.wrapper_schedule {
+  margin: 32px 16px;
+}
+
+.wrapper_schedule p {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.quotes {
+  overflow-x: scroll;
+}
+
+.quotes table {
+  width: 100%;
+  text-align: center;
+}
+
+.quotes table * {
+  font-size: 18px;
+}
+
+.quotes table thead tr th {
+  font-weight: bold;
+}
+
+.quotes table tbody tr:nth-child(odd) {
+  background: var(--gray-table);
+}
+
+button {
+  width: auto;
+  margin: 0;
+  padding: 0 16px;
+}
+
+.filter {
+  color: var(--red-primary-color);
+  cursor: pointer;
+}
+
+.option-attendance label {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.titleActivity {
+  text-align: center;
+}
+
+.titleActivity h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.info_risk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info_risk p {
+  margin-right: 8px;
+}
+
+.info_risk .point {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.icon_red {
+  color: var(--red-primary-color);
+}
+
+.red {
+  background: var(--red-primary-color);
+}
+
+.green {
+  background: var(--green-primary-color);
+}
+
+.orange {
+  background: var(--orange-primary-color);
+}
+
+.yellow {
+  background: var(--yellow-primary-color);
+}
+
+.gray {
+  background: var(--gray-menu);
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .quotes {
+    width: 90vw;
+    margin: auto;
+  }
+
+  .quotes table * {
+    font-size: 20px;
+  }
+
+  .titleActivity h1 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .wrapper_schedule p {
+    font-size: 20px;
+    margin: 16px 0;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_schedule {
+    margin-top: 80px;
+  }
+
+  .quotes {
+    width: 60vw;
+    margin: 32px auto;
+  }
+
+  .quotes table * {
+    font-size: 20px;
+  }
+
+  .attendance {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}

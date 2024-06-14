@@ -1,0 +1,94 @@
+<div class="wrapper_history_meet animate__animated animate__fadeIn">
+  <div class="title_history_meet">
+    <h3>Cita Psicológica</h3>
+    <button
+      (click)="onSubmit()"
+      [disabled]="formHistoryMeet.invalid || loading"
+    >
+      Guardar <i *ngIf="!loading" class="fas fa-save"></i
+      ><i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+    </button>
+  </div>
+
+  <div class="info_meet">
+    <p><span>Motivo de consulta:</span> {{ reasonActive }}</p>
+    <p *ngIf="!loadingMeet">
+      <span>Fecha:</span> {{ dateMeet | date: "MMM d, y, hh:mm a" }}
+    </p>
+    <p *ngIf="loadingMeet"><span>Fecha:</span> Cargando...</p>
+  </div>
+
+  <div class="reason_options">
+    <ul>
+      <li
+        *ngFor="let item of reasons; let i = index"
+        [ngClass]="{ red: item.isActive }"
+        (click)="activated(item.name, i)"
+      >
+        {{ item.name }}
+      </li>
+      <li>
+        <input
+          type="text"
+          (change)="changeToOther()"
+          autocomplete="false"
+          placeholder="Otro..."
+          #other
+        />
+      </li>
+    </ul>
+  </div>
+
+  <form [formGroup]="formHistoryMeet" (submit)="onSubmit()" class="list_text">
+    <div class="text_insert">
+      <p>1. PROBLEMÁTICA ACTUAL <span>(Fenomenología)</span></p>
+      <textarea
+        formControlName="currentProblem"
+        id="currentProblem"
+        name="currentProblem"
+        rows="7"
+      ></textarea>
+    </div>
+
+    <div class="text_insert">
+      <p>2. DIAGNÓSTICO</p>
+      <textarea
+        formControlName="diagnosis"
+        id="diagnosis"
+        name="diagnosis"
+        rows="7"
+      ></textarea>
+    </div>
+
+    <div class="text_insert">
+      <p>3. ABORDAJE PSICOTERAPÉUTICO</p>
+      <textarea
+        formControlName="psychotherapeuticApproach"
+        id="psychotherapeuticApproach"
+        name="psychotherapeuticApproach"
+        rows="7"
+      ></textarea>
+    </div>
+
+    <div class="text_insert">
+      <p>
+        4. PRONÓSTICO
+        <span
+          >(Crear un plan a trabajar definiendo los conflictos
+          importantes)</span
+        >
+      </p>
+      <textarea
+        formControlName="forecast"
+        id="forecast"
+        name="forecast"
+        rows="7"
+      ></textarea>
+    </div>
+
+    <button type="submit" [disabled]="formHistoryMeet.invalid || loading">
+      Guardar <i *ngIf="!loading" class="fas fa-save"></i
+      ><i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+    </button>
+  </form>
+</div>

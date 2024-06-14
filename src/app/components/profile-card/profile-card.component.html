@@ -1,0 +1,124 @@
+<div class="loading" *ngIf="loading">
+  <app-loading *ngIf="loading"></app-loading>
+</div>
+
+<div class="card_profile" *ngIf="!loading">
+  <app-photo></app-photo>
+  <div class="info_student">
+    <a class="pointer" (click)="goBack()"><i class="fas fa-arrow-left"></i></a>
+    <div class="description">
+      <h3>
+        {{ userShow.nombre }} {{ userShow.apellido }}
+        <i
+          *ngIf="
+            user.rol !== 'estudiante' &&
+            user.rol !== 'docente' &&
+            user.rol !== 'jefe'
+          "
+          (click)="toChatAdmin()"
+          class="fas fa-envelope red pointer"
+        ></i>
+      </h3>
+      <p>{{ userShow.correo }}</p>
+      <p *ngIf="userShow.rol !== 'docente'">
+        <i class="fas fa-circle" [ngClass]="color"></i> {{ risk }}
+      </p>
+    </div>
+    <div class="menu-options">
+      <input
+        type="checkbox"
+        #checkbox
+        id="showOptions"
+        (blur)="closeMenu($event)"
+      />
+      <label
+        *ngIf="
+          user.rol !== 'estudiante' &&
+            (title === 'Perfil Docente' ||
+              title === 'Perfil' ||
+              title === 'Beneficios' ||
+              title === 'Bitacora' ||
+              title === 'Asistencia Actividades' ||
+              title === 'Académico');
+          else hidden
+        "
+        title="Ver opciones"
+        class="pointer"
+        for="showOptions"
+        ><i class="fas fa-caret-down"></i
+      ></label>
+      <ng-template #hidden>
+        <label
+          *ngIf="title !== 'Perfil Docente' && user.rol === 'estudiante'"
+          title="Ver opciones"
+          class="pointer"
+          for="showOptions"
+          ><i class="fas fa-caret-down"></i
+        ></label>
+      </ng-template>
+
+      <ul>
+        <ng-container *ngFor="let route of routes">
+          <li
+            *ngIf="route.isAllowed(user.rol)"
+            (click)="toNavigate()"
+            fragment="contenedor"
+            [routerLink]="[route.path]"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            {{ route.name }} <i class="fas fa-{{ route.icon }}"></i>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+  <div class="data_student">
+    <div *ngIf="userShow.rol !== 'docente'" class="semester">
+      <h4>Semestre</h4>
+      <p>{{ userShow.semestre }}</p>
+    </div>
+    <div class="program">
+      <h4>{{ userShow.rol === "estudiante" ? "Programa" : "Departamento" }}</h4>
+      <p>{{ userShow.programa }}</p>
+    </div>
+    <div class="code">
+      <h4>Código</h4>
+      <p>{{ userShow.codigo }}</p>
+    </div>
+  </div>
+  <p><i class="fas fa-phone"></i> {{ userShow.telefono }}</p>
+  <p><i class="fas fa-id-card"></i> {{ userShow.documento }}</p>
+  <p>
+    <i class="fas fa-map-marker-alt"></i>
+    {{ userShow.direccion }}
+  </p>
+  <p
+    *ngIf="user.rol === 'estudiante' && title !== 'Perfil Docente'"
+    (click)="updateProfile()"
+    class="active pointer"
+  >
+    <i class="far fa-calendar-plus"></i> Agendar cita
+  </p>
+  <div *ngIf="userShow.rol === 'docente'">
+    <button (click)="contact()" class="b">
+      Contactar <i class="fas fa-handshake"></i>
+    </button>
+  </div>
+  <div *ngIf="title !== 'Perfil Docente'">
+    <app-validate-postulation
+      [user]="user"
+      [userShow]="userShow"
+    ></app-validate-postulation>
+  </div>
+</div>
+
+<app-update-profile
+  *ngIf="showUpdateProfile"
+  (isClosed)="updateProfile($event)"
+></app-update-profile>
+<!-- <div class="ac_012">
+  <i class="fas fa-exclamation-triangle text_012">
+    El estudiante se encuentra en el Acuerdo_012</i
+  >
+</div> -->

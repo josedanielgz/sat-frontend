@@ -1,0 +1,84 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="container animate__animated animate__fadeIn">
+  <div class="content" *ngIf="!loading && meet && res">
+    <h2>Nueva Reunión</h2>
+    <div class="date_icon">
+      <div class="icon">
+        <i class="d fas fa-users"></i>
+      </div>
+      <div class="date">
+        <h5>
+          Fecha: <span>{{ meet.dateFormat }}</span>
+        </h5>
+        <h5>
+          Seleccione la Hora:
+          <select #time name="hour" id="hour">
+            <option value="{{ item }}" *ngFor="let item of times">
+              {{ item }}
+            </option>
+          </select>
+        </h5>
+        <h5>
+          Con:<span> {{ meet.role }}</span>
+        </h5>
+        <h5>
+          Lugar:<span> {{ meet.ubication }}</span>
+        </h5>
+      </div>
+    </div>
+    <div class="asist">
+      <h3>¿ Quiere Asistir ?</h3>
+      <textarea
+        #reasons
+        maxlength="100"
+        placeholder="Si decide rechazar la cita escriba brevemente el motivo aquí"
+      ></textarea>
+      <div class="buttons">
+        <button (click)="accept(false)">No</button>
+        <button (click)="accept(true)" class="b2">Si</button>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="!this.meets.length" class="no_meet_p">
+    No tiene reuniones programadas
+  </p>
+  <div
+    class="table_meet animate__animated animate__fadeIn"
+    *ngIf="this.meets.length"
+  >
+    <p>Historial de reuniones</p>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Hora 24h</th>
+        <th>Con</th>
+        <th>Estado</th>
+        <th>Asistencia</th>
+      </tr>
+      <tr *ngFor="let meet of meets; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ meet.date | date: "MMM d" }}</td>
+        <td>{{ meet.hour ? meet.hour : "--:--" }}</td>
+        <td class="pointer" (click)="updateModal(true, meet.role)">
+          {{ normalize(meet.role) }}
+          <i
+            *ngIf="meet.state === 'ACEPTADA'"
+            class="fas fa-angle-down red"
+            title="Contactar"
+          ></i>
+        </td>
+        <td>{{ meet.state }}</td>
+        <td *ngIf="meet.attendance"><i class="fas fa-check"></i></td>
+        <td *ngIf="!meet.attendance"><i class="fas fa-times"></i></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<app-modal-chat
+  *ngIf="showModalChat"
+  (isClosed)="updateModal($event)"
+  [role]="role"
+></app-modal-chat>

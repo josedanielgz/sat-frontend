@@ -1,0 +1,14 @@
+<div class="list_risks animate__animated animate__fadeIn">
+  <div class="risk" *ngFor="let risk of risksDetail">
+    <h4 (click)="updateRisk()">
+      {{ risk.name }}
+    </h4>
+    <p>Actualmente está {{ risk.color().risk }}</p>
+    <i
+      (click)="onNavigateToRisk('/estudiante/riesgo-' + risk.path)"
+      class="fas fa-{{ risk.icon }} pointer {{ risk.color().color }}"
+    ></i>
+  </div>
+</div>
+
+<app-alert *ngIf="showAlert" (isClosed)="updateRisk($event)"></app-alert>

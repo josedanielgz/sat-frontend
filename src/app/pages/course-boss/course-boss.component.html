@@ -1,0 +1,29 @@
+<div class="course_container">
+  <div class="row_header">
+    <app-title [title]="title"></app-title>
+    <app-statistics-risk></app-statistics-risk>
+  </div>
+  <div *ngIf="group !== null" class="info_course">
+    <div class="info-item">
+      <h2>Correo Docente</h2>
+      <p>{{ group.correodocente }}</p>
+    </div>
+    <div class="info-item">
+      <h2>Máximo de cupos</h2>
+      <p>{{ group.num_max_alumnos }}</p>
+    </div>
+    <div class="info-item">
+      <h2>Alumnos matriculados</h2>
+      <p>{{ group.num_alum_matriculados }}</p>
+    </div>
+    <div class="info-item">
+      <h2>Código</h2>
+      <p>{{ group.codigo }}</p>
+    </div>
+    <div class="info-item">
+      <h2>Créditos</h2>
+      <p>{{ group.creditos }}</p>
+    </div>
+  </div>
+  <app-cake></app-cake>
+</div>

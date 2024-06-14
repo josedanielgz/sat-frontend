@@ -1,0 +1,290 @@
+<div class="card_profile">
+  <div class="photo">
+    <app-photo [isAdmin]="true"></app-photo>
+  </div>
+  <div class="info_student">
+    <div class="description">
+      <h3>{{ user.nombre }} {{ user.apellido }}</h3>
+      <p>{{ user.correo }}</p>
+      <p>{{ normalize(user.rol) }}</p>
+    </div>
+  </div>
+  <div class="tarjet">
+    <div
+      class="seccion pointer"
+      (click)="showActive('1')"
+      [ngClass]="{ tarjet_active: active === '1' }"
+    >
+      <i class="fas fa-id-badge"></i>
+    </div>
+    <div
+      class="seccion pointer"
+      (click)="showActive('2')"
+      [ngClass]="{ tarjet_active: active === '2' }"
+    >
+      <i class="fas fa-unlock-alt"></i>
+    </div>
+    <div
+      *ngIf="user.rol === 'vicerrector'"
+      class="seccion pointer"
+      (click)="showActive('3')"
+      [ngClass]="{ tarjet_active: active === '3' }"
+    >
+      <i class="fas fa-clock"></i>
+    </div>
+  </div>
+  <div class="tarje_container">
+    <div class="showProfile" *ngIf="active === '1'">
+      <span><i class="fas fa-phone"></i> {{ user.telefono }}</span>
+      <span><i class="fas fa-id-card"></i> {{ user.documento }}</span>
+      <hr />
+      <p>
+        Se encuentra registrado en la plataforma desde el dia
+        {{ user.fechaingreso | date: "EEEE d 'de' MMMM 'del' y" }} como
+        <strong>{{ user.rol }}</strong>
+      </p>
+    </div>
+    <form
+      [formGroup]="formChangePassword"
+      (submit)="onSubmit()"
+      class="editProfile"
+      *ngIf="active === '2'"
+    >
+      <div
+        class="form_input"
+        [ngClass]="{
+          error: password.invalid && (password.dirty || password.touched)
+        }"
+      >
+        <input
+          placeholder="Contraseña actual"
+          formControlName="password"
+          name="password"
+          [type]="typePassword"
+          required
+        />
+        <i
+          *ngIf="!password.invalid && !showPassword"
+          (click)="changeShowPassword()"
+          class="fas fa-eye fa-fw pointer"
+        ></i>
+        <i
+          *ngIf="showPassword"
+          (click)="changeShowPassword()"
+          class="fas fa-eye-slash fa-fw pointer"
+        ></i>
+        <i
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="fas fa-exclamation-triangle pointer"
+          id="password"
+        ></i>
+        <div class="popover">
+          <ul *ngIf="password.invalid && (password.dirty || password.touched)">
+            <li>* Debe tener mínimo 4 caracteres</li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="form_input"
+        [ngClass]="{
+          error:
+            newPassword.invalid && (newPassword.dirty || newPassword.touched)
+        }"
+      >
+        <input
+          placeholder="nueva contraseña"
+          formControlName="newPassword"
+          name="newPassword"
+          [type]="typePassword2"
+          required
+        />
+        <i
+          *ngIf="!newPassword.invalid && !showPassword2"
+          (click)="changeShowPassword2()"
+          class="fas fa-eye fa-fw pointer"
+        ></i>
+        <i
+          *ngIf="showPassword2"
+          (click)="changeShowPassword2()"
+          class="fas fa-eye-slash fa-fw pointer"
+        ></i>
+        <i
+          *ngIf="
+            newPassword.invalid && (newPassword.dirty || newPassword.touched)
+          "
+          class="fas fa-exclamation-triangle pointer"
+          id="newPassword"
+        ></i>
+        <div class="popover">
+          <ul
+            *ngIf="
+              newPassword.invalid && (newPassword.dirty || newPassword.touched)
+            "
+          >
+            <li>* Debe tener mínimo 4 caracteres</li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="form_input"
+        [ngClass]="{
+          error:
+            confirmPassword.invalid &&
+            (confirmPassword.dirty || confirmPassword.touched)
+        }"
+      >
+        <input
+          placeholder="confirmar contraseña"
+          formControlName="confirmPassword"
+          name="confirmPassword"
+          [type]="typePassword3"
+          required
+        />
+        <i
+          *ngIf="!confirmPassword.invalid && !showPassword3"
+          (click)="changeShowPassword3()"
+          class="fas fa-eye fa-fw pointer"
+        ></i>
+        <i
+          *ngIf="showPassword3"
+          (click)="changeShowPassword3()"
+          class="fas fa-eye-slash fa-fw pointer"
+        ></i>
+        <i
+          *ngIf="
+            confirmPassword.invalid &&
+            (confirmPassword.dirty || confirmPassword.touched)
+          "
+          class="fas fa-exclamation-triangle pointer"
+          id="confirmPassword"
+        ></i>
+        <div class="popover">
+          <ul
+            *ngIf="
+              confirmPassword.invalid &&
+              (confirmPassword.dirty || confirmPassword.touched)
+            "
+          >
+            <li>* Las contraseñas no coinciden</li>
+          </ul>
+        </div>
+      </div>
+
+      <button [disabled]="formChangePassword.invalid">
+        Cambiar contraseña
+        <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+    <form
+      [formGroup]="formSchedule"
+      (submit)="updateSchedule()"
+      class="editProfile"
+      *ngIf="active === '3'"
+    >
+      <p>Seleccione el rol</p>
+      <div class="form_input">
+        <select
+          formControlName="role"
+          name="role"
+          id="role"
+          (change)="change()"
+        >
+          <option *ngFor="let rol of roles" value="{{ rol._id.$oid }}">
+            {{ normalize(rol.role) }}
+          </option>
+        </select>
+      </div>
+      <ul *ngIf="role.invalid && (role.dirty || role.touched)">
+        <li>* El rol es obligatorío</li>
+      </ul>
+      <p>Horario de la mañana</p>
+      <div class="form_input">
+        <input
+          placeholder="Hora de inicio"
+          formControlName="morningStart"
+          name="morningStart"
+          id="morningStart"
+          type="time"
+          min="06:00"
+          max="12:00"
+          step="1800"
+          required
+        />
+      </div>
+      <ul
+        *ngIf="
+          morningStart.invalid && (morningStart.dirty || morningStart.touched)
+        "
+      >
+        <li>* La hora de inicio es obligatoría</li>
+      </ul>
+      <div class="form_input">
+        <input
+          placeholder="Hora de finalización"
+          formControlName="morningEnd"
+          name="morningEnd"
+          id="morningEnd"
+          type="time"
+          min="06:00"
+          max="12:00"
+          step="1800"
+          required
+        />
+      </div>
+      <ul
+        *ngIf="morningEnd.invalid && (morningEnd.dirty || morningEnd.touched)"
+      >
+        <li>* La hora de finalización es obligatoría</li>
+      </ul>
+      <p>Horario de la tarde</p>
+      <div class="form_input">
+        <input
+          placeholder="Horario Tarde"
+          formControlName="afternoonStart"
+          name="afternoonStart"
+          id="afternoonStart"
+          type="time"
+          min="13:00"
+          max="18:00"
+          step="1800"
+          required
+        />
+      </div>
+      <ul
+        *ngIf="
+          afternoonStart.invalid &&
+          (afternoonStart.dirty || afternoonStart.touched)
+        "
+      >
+        <li>* La hora de inicio es obligatoría</li>
+      </ul>
+      <div class="form_input">
+        <input
+          placeholder="Horario Tarde"
+          formControlName="afternoonEnd"
+          name="afternoonEnd"
+          id="afternoonEnd"
+          type="time"
+          min="13:00"
+          max="18:00"
+          step="1800"
+          required
+        />
+      </div>
+      <ul
+        *ngIf="
+          afternoonEnd.invalid && (afternoonEnd.dirty || afternoonEnd.touched)
+        "
+      >
+        <li>* La hora de finalización es obligatoría</li>
+      </ul>
+      <button [disabled]="formSchedule.invalid || loadingData">
+        Guardar horario
+        <i *ngIf="loadingSchedule" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+  </div>
+</div>
+<app-floating-button class="floating"></app-floating-button>

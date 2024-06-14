@@ -1,0 +1,47 @@
+<div class="wrapper_alert" (click)="onClick($event)">
+  <div class="alert_container">
+    <div class="notification_header">
+      <h1>Crear cita</h1>
+      <i (click)="close()" class="fas fa-times fa-fw pointer"></i>
+    </div>
+    <hr />
+    <form
+      [formGroup]="formDate"
+      (submit)="onSubmit()"
+      class="form_notification"
+    >
+      <div class="form_input">
+        <label for="role">Con</label>
+        <select formControlName="role" name="role" id="role">
+          <option *ngFor="let rol of roles" value="{{ rol._id.$oid }}">
+            {{ normalize(rol.role) }}
+          </option>
+        </select>
+      </div>
+      <div class="form_input">
+        <label for="date">Fecha</label>
+        <input
+          type="date"
+          min="{{ today | date: 'yyyy-MM-dd' }}"
+          formControlName="date"
+          name="date"
+          id="date"
+        />
+      </div>
+      <div class="form_input">
+        <label for="ubication">Lugar</label>
+        <input
+          type="text"
+          formControlName="ubication"
+          name="ubication"
+          autofocus
+          id="ubication"
+        />
+      </div>
+      <button [disabled]="formDate.invalid || loading" type="submit">
+        Notificar estudiante
+        <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+  </div>
+</div>

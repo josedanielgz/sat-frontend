@@ -1,0 +1,53 @@
+<div class="activities_container">
+  <div class="title">
+    <app-title [title]="title"></app-title>
+  </div>
+
+  <app-loading *ngIf="loading"></app-loading>
+
+  <div *ngIf="!loading && activities.length < 1" class="empty">
+    <p>No hay actividades programadas en este momento.</p>
+  </div>
+
+  <div class="list_activities" *ngIf="!loading">
+    <div class="card" *ngFor="let item of activities; let i = index">
+      <div class="card_logo">
+        <img src="/assets/image/Logo_SAT.svg" alt="Logo SAT" />
+        <span
+          >{{ item.date | date: "d MMMM" }},
+          {{ item.date | date: "hh:mm a" }}</span
+        >
+        <div class="asist" title="Asistentes">
+          <i class="fas fa-users"></i>
+          <span>{{ item.counter }}</span>
+        </div>
+      </div>
+      <div class="info_risk">
+        <p>{{ item.risk }}</p>
+        <div class="point {{ getColor(item.riskLevel) }}"></div>
+      </div>
+      <div class="card_img">
+        <img
+          src="/assets/image/{{ normalize(item.risk) }}.svg"
+          alt="Imágen del rol"
+        />
+      </div>
+      <div class="card_info">
+        <h3>{{ item.name }}</h3>
+        <hr />
+        <p>
+          {{ item.description }}
+        </p>
+      </div>
+      <button *ngIf="!item.asistance" (click)="asist(true, item._id.$oid, i)">
+        Asistir
+        <i *ngIf="item.loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+
+      <button *ngIf="item.asistance" (click)="asist(false, item._id.$oid, i)">
+        Cancelar
+        <i *ngIf="item.loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </div>
+  </div>
+</div>

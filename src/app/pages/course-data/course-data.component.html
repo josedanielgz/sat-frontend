@@ -1,0 +1,53 @@
+<div class="loading">
+  <app-loading *ngIf="loading"></app-loading>
+</div>
+
+<div class="content animate__animated animate__fadeIn" *ngIf="!loading">
+  <h1>{{ course.materia.nombre }} - {{ course.grupo }}</h1>
+  <div class="home">
+    <div class="semester_credits">
+      <div class="semester">
+        <h4>Semestre</h4>
+        <p>{{ course.materia.semestre }}</p>
+      </div>
+      <div class="credits">
+        <h4>Créditos</h4>
+        <p>{{ course.materia.creditos }}</p>
+      </div>
+    </div>
+    <div class="teachear_schedule">
+      <div class="teacher">
+        <div class="title">
+          <h4>Docente: &nbsp;</h4>
+        </div>
+        <div class="date">
+          <p>{{ docente }}</p>
+        </div>
+      </div>
+      <div class="shedule">
+        <div class="title">
+          <h4>Horario: &nbsp;</h4>
+        </div>
+        <div class="date">
+          <p>{{ course.materia.horario }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="line" />
+  <h3 class="title_qualification">Calificaciónes</h3>
+  <div class="notes">
+    <app-note-index
+      [note]="createNote('1P', course.previo_uno)"
+    ></app-note-index>
+    <app-note-index
+      [note]="createNote('2P', course.previo_dos)"
+    ></app-note-index>
+    <app-note-index
+      [note]="createNote('3P', course.previo_tres)"
+    ></app-note-index>
+    <app-note-index
+      [note]="createNote('EX', course.examen_final)"
+    ></app-note-index>
+  </div>
+</div>

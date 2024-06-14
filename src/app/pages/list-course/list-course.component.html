@@ -1,0 +1,14 @@
+<div class="wrapper_course animate__animated animate__fadeIn">
+  <div class="title">
+    <app-title [title]="title"></app-title>
+  </div>
+  <div *ngIf="loading" class="loading">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="!loading" class="list_courses">
+    <app-item-course
+      *ngFor="let course of listCourses"
+      [course]="course"
+    ></app-item-course>
+  </div>
+</div>

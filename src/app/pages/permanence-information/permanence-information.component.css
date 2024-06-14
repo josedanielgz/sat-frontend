@@ -1,0 +1,165 @@
+.content {
+  margin: 16px;
+}
+.content h1 {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.dates {
+  text-align: center;
+}
+.name_value {
+  display: flex;
+  flex-direction: row;
+}
+.name_value h3 {
+  font-weight: bold;
+  margin: 0px 5px;
+}
+.content h2 {
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+.content_table {
+  display: flex;
+  justify-content: center;
+}
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+.comulun {
+  width: 60px;
+  margin-top: 10px;
+}
+.comulun h5 {
+  text-align: center;
+}
+.activate {
+  text-align: center;
+  border: 2px black solid;
+}
+.average {
+  height: 10px;
+  border: 2px black solid;
+}
+
+.average div {
+  height: 100%;
+}
+
+.bad {
+  background: var(--red-primary-color);
+}
+.good {
+  background: var(--green-primary-color);
+}
+.regular {
+  background: var(--orange-primary-color);
+}
+.empty {
+  background: var(--gray-table);
+}
+
+hr {
+  margin: 10px;
+}
+
+.option {
+  display: flex;
+  justify-content: space-around;
+}
+.role {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.dates_role {
+  margin-top: 10px;
+}
+.role p {
+  margin-top: 10px;
+  height: 10px;
+  width: 30px;
+}
+.role .one {
+  background: var(--green-primary-color);
+}
+.role .two {
+  background: var(--orange-primary-color);
+}
+.role .three {
+  background: var(--red-primary-color);
+}
+.role .four {
+  background: var(--gray-table);
+}
+/* tablet */
+@media (min-width: 768px) and (max-width: 1151px) {
+  .content {
+    margin: 32px;
+  }
+  .content h1 {
+    font-size: 25px;
+  }
+  .name_value h3 {
+    font-size: 20px;
+  }
+  .name_value p {
+    font-size: 20px;
+  }
+  .dates {
+    margin-left: 200px;
+  }
+  .content h2 {
+    font-size: 20px;
+    margin: 20px;
+  }
+  .option p {
+    font-size: 25px;
+  }
+  .option p i {
+    font-size: 25px;
+  }
+  .dates_role h3 {
+    font-size: 25px;
+    margin: 0px 45px;
+  }
+  .role p {
+    margin-top: 10px;
+    margin-right: 40px;
+    height: 20px;
+    width: 60px;
+  }
+  .comulun h5 {
+    font-size: 20px;
+  }
+  .comulun {
+    width: 100px;
+    height: 50px;
+    margin-top: 20px;
+  }
+  .content_table {
+    margin-bottom: 40px;
+  }
+}
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .content {
+    width: 50vw;
+  }
+  .loading {
+    width: 50vw;
+  }
+  .dates_role {
+    margin: 10px 50px;
+  }
+  .dates {
+    margin: 10px 140px;
+  }
+}

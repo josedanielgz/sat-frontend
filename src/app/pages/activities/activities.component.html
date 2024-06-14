@@ -1,0 +1,81 @@
+<div class="wrapper_schedule">
+  <div class="titleActivity">
+    <h1>Actividades</h1>
+  </div>
+
+  <div>
+    <p (click)="createActivity()" class="pointer">
+      Crear Actividad <i class="fas fa-plus"></i>
+    </p>
+
+    <div class="quotes animate__animated animate__fadeIn">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Lugar</th>
+            <th>Riesgo</th>
+            <th>Asistentes</th>
+            <th>Desactivar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let activity of activities; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              {{ activity.name }}
+              <i
+                (click)="createActivity(true, activity)"
+                class="fas fa-pencil-alt icon_red pointer"
+              ></i>
+            </td>
+            <td>{{ activity.date | date: "EEEE, d 'de' MMMM 'del' y" }}</td>
+            <td>
+              {{ activity.date | date: "hh:mm a" }}
+            </td>
+            <td>{{ activity.place }}</td>
+            <td>
+              <div class="info_risk">
+                <p>{{ activity.risk }}</p>
+                <div class="point {{ getColor(activity.riskLevel) }}"></div>
+              </div>
+            </td>
+            <td>
+              {{ activity.counter }}
+              <i
+                *ngIf="activity.counter > 0 && !activity.loading"
+                (click)="
+                  download(
+                    activity._id.$oid,
+                    activity.name,
+                    activity.date,
+                    activity.place
+                  )
+                "
+                class="fas fa-download icon_red pointer"
+              ></i>
+            </td>
+            <td>
+              <button (click)="desactiveActivity(activity._id.$oid)">
+                <i *ngIf="!activity.loading" class="fas fa-stopwatch"></i>
+                <i
+                  *ngIf="activity.loading"
+                  class="fas fa-spinner fa-pulse fa-fw"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p *ngIf="activities.length === 0">
+      No se encontrarón actividades programadas
+    </p>
+  </div>
+</div>
+<app-modal-activity *ngIf="create" (isClosed)="createActivity($event)">
+</app-modal-activity>

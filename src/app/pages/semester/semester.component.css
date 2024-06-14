@@ -1,0 +1,108 @@
+.wrapper_faculties {
+  margin: 48px 16px 16px 16px;
+  text-align: center;
+}
+
+.wrapper_faculties h1 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.form_input {
+  background: var(--gray-menu);
+}
+
+.form_input i {
+  color: var(--red-primary-color);
+}
+
+.list_semester {
+  margin-top: 32px;
+}
+
+.list_semester ul {
+  list-style: none;
+  text-align: left;
+}
+
+.list_semester ul li {
+  padding: 10px;
+  font-size: 16px;
+  background: var(--gray-menu);
+  margin-top: 15px;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.list_semester ul li::before {
+  position: absolute;
+  color: var(--red-primary-color);
+  font-family: "Font Awesome 5 Free";
+  content: "\f105";
+  right: 10px;
+  font-weight: bold;
+}
+
+.row_header {
+  margin-top: 32px;
+}
+
+.red p {
+  margin-top: 16px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .statistics {
+    margin: 64px;
+  }
+
+  .wrapper_faculties h1 {
+    font-size: 25px;
+    margin-bottom: 32px;
+  }
+
+  .form_input {
+    margin: auto;
+    width: 50vw;
+  }
+
+  .list_semester {
+    width: 60vw;
+    margin: 48px auto;
+  }
+
+  .list_semester ul li {
+    font-size: 22px;
+  }
+  input {
+    font-size: 18px;
+  }
+  .red p {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_faculties {
+    margin: 80px 16px 32px 16px;
+    text-align: center;
+  }
+
+  .wrapper_faculties h1 {
+    margin-bottom: 16px;
+  }
+
+  .form_input {
+    width: 40vw;
+  }
+
+  .list_semester {
+    width: 50vw;
+    margin: 48px auto;
+  }
+}

@@ -1,0 +1,16 @@
+<form [formGroup]="formSearch" (submit)="onSubmit()" class="form_input">
+  <input
+    type="text"
+    placeholder="Buscar estudiante (Código | Correo)"
+    id="filter"
+    name="filter"
+    autocomplete="off"
+    formControlName="filter"
+  />
+  <i
+    *ngIf="!loadingSearch"
+    class="fas fa-search fa-fw pointer"
+    (click)="onSubmit()"
+  ></i>
+  <i *ngIf="loadingSearch" class="fas fa-spinner fa-spin fa-fw"></i>
+</form>

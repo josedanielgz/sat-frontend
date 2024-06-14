@@ -1,0 +1,73 @@
+.wrapper_alert {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.alert_container {
+  width: 294px;
+  padding-top: 32px;
+  background: var(--white);
+  text-align: center;
+  border-radius: 25px;
+}
+
+.alert_container h1 {
+  font-weight: bold;
+  font-size: 21px;
+}
+
+.alert_container p {
+  margin: 16px 0;
+}
+
+.alert_container ul li {
+  margin: 16px 0;
+  cursor: pointer;
+}
+
+.alert_container ul li:hover {
+  background: var(--gray-menu);
+}
+
+.alert_options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.alert_options button:nth-child(1) {
+  background: var(--gray-dark-color);
+  color: black;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .alert_container {
+    width: 458px;
+  }
+
+  .alert_container h1 {
+    font-size: 33px;
+  }
+
+  .alert_container p {
+    font-size: 22px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .alert_container {
+    width: 450px;
+  }
+}

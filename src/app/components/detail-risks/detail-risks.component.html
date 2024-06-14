@@ -1,0 +1,60 @@
+<div class="text">
+  <p>Para este tipo de riesgo se tienen en cuenta la siguiente información:</p>
+</div>
+<div class="content">
+  <div class="risks">
+    <i class="fas fa-fw icon" [ngClass]="itemsRisks.icon"></i>
+    <div class="item-risks" *ngFor="let item of itemsRisks.items">
+      <p><i class="fas fa-cog fa-fw"></i>{{ item }}</p>
+    </div>
+  </div>
+  <div class="picture">
+    <img
+      src="../../../assets/image/{{ itemsRisks.urlImg }}"
+      alt="Imágen del rol"
+    />
+  </div>
+  <app-loading class="loading" *ngIf="loading"></app-loading>
+  <div
+    class="recommend_risk animate__animated animate__fadeIn"
+    *ngIf="!loading"
+  >
+    <p>Listado de beneficios del estudiante</p>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let profit of profits; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ profit.nombre }}</td>
+            <td *ngIf="profit.state"><i class="far fa-check-circle"></i></td>
+            <td *ngIf="!profit.state">
+              <p *ngIf="profit.isSuggested && !profit.response">Sugerido</p>
+              <p *ngIf="!profit.isSuggested && profit.response">En revisión</p>
+              <i
+                *ngIf="!isAdmin && !profit.isSuggested && !profit.response"
+                class="far fa-times-circle"
+              ></i>
+              <button
+                *ngIf="isAdmin && !profit.isSuggested && !profit.response"
+                (click)="createSuggestion(profit.id, i)"
+              >
+                Recomendar
+                <i
+                  *ngIf="profit.loading"
+                  class="fas fa-spinner fa-pulse fa-fw"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

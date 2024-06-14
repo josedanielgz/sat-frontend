@@ -1,0 +1,87 @@
+.statistics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+}
+
+.statistics div {
+  width: 70px;
+  height: 70px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.statistics div:nth-child(1) {
+  margin-left: 0;
+}
+
+.statistics div h3 {
+  font-size: 20px;
+  font-weight: bold;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 10px;
+  margin: auto;
+  color: var(--white);
+}
+
+.statistics div p {
+  font-size: 14px;
+  color: black;
+}
+
+.leve h3 {
+  background: var(--yellow-primary-color);
+}
+
+.moderado h3 {
+  background: var(--orange-primary-color);
+}
+
+.critico h3 {
+  background: var(--red-primary-color);
+}
+
+.acuerdo_012 h3 {
+  background: #0a0a0a;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .statistics {
+    margin: 64px;
+  }
+
+  .statistics div {
+    width: 96px;
+    height: 96px;
+    margin-left: 48px;
+  }
+
+  .statistics div h3 {
+    font-size: 32px;
+    width: 84px;
+    height: 84px;
+    line-height: 84px;
+  }
+
+  .statistics div p {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .statistics {
+    margin-top: 0px;
+  }
+  .statistics div {
+    width: 80px;
+    height: 50px;
+    margin-left: 48px;
+  }
+}

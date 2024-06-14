@@ -1,0 +1,205 @@
+<div class="wrapper_alert" (click)="onClick($event)">
+  <div class="alert_container">
+    <h3>{{ title }}</h3>
+    <hr />
+    <form [formGroup]="formCreateActivity" (submit)="onSubmit()">
+      <div class="row">
+        <div
+          class="campu"
+          [ngClass]="{
+            errorActivity: name.invalid && (name.dirty || name.touched)
+          }"
+        >
+          <label for="name">Nombre</label>
+          <input
+            formControlName="name"
+            placeholder=""
+            name="name"
+            autocomplete="false"
+            type="text"
+            autofocus="true"
+            required
+          />
+          <i
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw"
+            id="name"
+          ></i>
+          <div class="popoverActivity">
+            <ul *ngIf="name.invalid && (name.dirty || name.touched)">
+              <li>* El campo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="campu"
+          [ngClass]="{
+            errorActivity: place.invalid && (place.dirty || place.touched)
+          }"
+        >
+          <label for="place">Lugar</label>
+          <input
+            formControlName="place"
+            name="place"
+            type="text"
+            autocomplete="false"
+            required
+          />
+          <i
+            *ngIf="place.invalid && (place.dirty || place.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw"
+            id="place"
+          ></i>
+          <div class="popoverActivity">
+            <ul *ngIf="place.invalid && (place.dirty || place.touched)">
+              <li>* El campo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="campu">
+          <label for="date">Fecha</label>
+          <input
+            formControlName="date"
+            name="date"
+            id="date"
+            type="datetime-local"
+            min="{{ today | date: 'yyyy-MM-ddTHH:mm' }}"
+            required
+          />
+        </div>
+        <ul *ngIf="date.invalid && (date.dirty || date.touched)">
+          <li>* El campo es obligatorio</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <div
+          class="campu"
+          [ngClass]="{
+            errorActivity: risk.invalid && (risk.dirty || risk.touched)
+          }"
+        >
+          <label for="risk">Riesgo</label>
+          <select name="risk" formControlName="risk" (change)="change()">
+            <option value="">Seleccione</option>
+            <option value="global">Global</option>
+            <option value="Académico">Academico</option>
+            <option value="Individual">Individual</option>
+            <option value="Institucional">Insititucional</option>
+            <option value="Económico">Economico</option>
+          </select>
+          <i
+            *ngIf="risk.invalid && (risk.dirty || risk.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw"
+            id="risk"
+          ></i>
+          <div class="popoverActivity">
+            <ul *ngIf="risk.invalid && (risk.dirty || risk.touched)">
+              <li>* El campo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="campu"
+          [ngClass]="{
+            errorActivity:
+              riskLevel.invalid && (riskLevel.dirty || riskLevel.touched)
+          }"
+          *ngIf="risk.value === 'global'"
+        >
+          <label for="riskLevel">Nivel</label>
+          <select name="riskLevel" formControlName="riskLevel">
+            <option value="">Seleccione</option>
+            <option value="global">Global</option>
+          </select>
+          <i
+            *ngIf="riskLevel.invalid && (riskLevel.dirty || riskLevel.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw"
+            id="riskLevel"
+          ></i>
+          <div class="popoverActivity">
+            <ul
+              *ngIf="
+                riskLevel.invalid && (riskLevel.dirty || riskLevel.touched)
+              "
+            >
+              <li>* El campo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="campu"
+          [ngClass]="{
+            errorActivity:
+              riskLevel.invalid && (riskLevel.dirty || riskLevel.touched)
+          }"
+          *ngIf="risk.value !== 'global'"
+        >
+          <label for="riskLevel">Nivel</label>
+          <select name="riskLevel" formControlName="riskLevel">
+            <option value="">Seleccione</option>
+            <option value="sin riesgo">Sin riesgo</option>
+            <option value="leve">Leve</option>
+            <option value="critico">Crítico</option>
+            <option value="moderado">Moderado</option>
+          </select>
+          <i
+            *ngIf="riskLevel.invalid && (riskLevel.dirty || riskLevel.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw"
+            id="riskLevel"
+          ></i>
+          <div class="popoverActivity">
+            <ul
+              *ngIf="
+                riskLevel.invalid && (riskLevel.dirty || riskLevel.touched)
+              "
+            >
+              <li>* El campo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          class="campu"
+          [ngClass]="{
+            errorActivity:
+              description.invalid && (description.dirty || description.touched)
+          }"
+        >
+          <label for="description">Descripción</label>
+          <textarea
+            name="description"
+            autocomplete="false"
+            formControlName="description"
+          ></textarea>
+          <i
+            *ngIf="
+              description.invalid && (description.dirty || description.touched)
+            "
+            class="fas fa-exclamation-triangle pointer fa-fw"
+            id="description"
+          ></i>
+          <div class="popoverActivity">
+            <ul
+              *ngIf="
+                description.invalid &&
+                (description.dirty || description.touched)
+              "
+            >
+              <li>* El campo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button [disabled]="formCreateActivity.invalid || loading" type="submit">
+        {{ textButton }}
+        <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+  </div>
+</div>

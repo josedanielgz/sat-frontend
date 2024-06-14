@@ -1,0 +1,71 @@
+<div class="wrapper_history animate__animated animate__fadeIn">
+  <h3>Historía Psicológica</h3>
+  <form
+    [formGroup]="formFamilyHistory"
+    (submit)="onSubmit()"
+    class="history_family"
+  >
+    <p>1. Historía Familiar</p>
+    <textarea
+      formControlName="familyHistory"
+      id="familyHistory"
+      rows="7"
+      name="familyHistory"
+    ></textarea>
+    <div *ngIf="role === 'psicologo'" class="btn_options">
+      <button *ngIf="isEdit" (click)="changeIsEdit(false)" class="cancel">
+        Cancelar <i class="fas fa-times-circle"></i>
+      </button>
+      <button
+        *ngIf="isEdit"
+        [disabled]="formFamilyHistory.invalid || loading"
+        type="submit"
+      >
+        Guardar <i *ngIf="!loading" class="fas fa-save"></i
+        ><i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+      <button *ngIf="!isEdit" (click)="changeIsEdit(true)">
+        Editar <i class="fas fa-edit"></i>
+      </button>
+    </div>
+  </form>
+
+  <div class="meets">
+    <h3>
+      Citas
+      <a
+        *ngIf="role === 'psicologo'"
+        routerLink="/estudiante/historial-de-cita"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><i class="fas fa-pencil-alt red"></i
+      ></a>
+    </h3>
+    <p *ngIf="!meets.length && !loadingMeets">No se encontrarón resultados</p>
+    <app-loading *ngIf="loadingMeets"></app-loading>
+    <div *ngIf="meets.length && !loadingMeets" class="list_meets">
+      <div class="meet" *ngFor="let item of meets">
+        <div class="reason">
+          <p>
+            <span>MOTIVO: </span>
+            {{ item.meetPsychological.reasonMeet }}
+          </p>
+        </div>
+        <div class="date">
+          <p>
+            <span>FECHA: </span>
+            {{ item.dateFormat | date: "MMM d, y, hh:mm a" }}
+          </p>
+        </div>
+        <p class="pointer" (click)="showHistory(true, item)">Ver más</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-history
+  *ngIf="history"
+  [meetPsychological]="meetPsychological"
+  (isClosed)="showHistory($event)"
+>
+</app-modal-history>

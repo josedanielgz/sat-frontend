@@ -1,0 +1,41 @@
+.title h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.title p {
+  font-size: 16px;
+  color: #a79e95;
+  margin-top: 16px;
+}
+
+/* Tablet & Desktop */
+
+@media (min-width: 768px) {
+  .title h1 {
+    font-size: 32px;
+  }
+
+  .title p {
+    font-size: 22px;
+    margin: 10px 20px;
+    text-align: center;
+  }
+  /* Desktop */
+  @media (min-width: 1152px) {
+    .title h1 {
+      font-size: 32px;
+    }
+    .title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      width: 500px;
+    }
+
+    .title p {
+      font-size: 20px;
+    }
+  }
+}

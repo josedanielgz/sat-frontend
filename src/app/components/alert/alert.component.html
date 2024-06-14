@@ -1,0 +1,17 @@
+<div class="wrapper_alert" (click)="onClick($event)">
+  <div class="alert_container">
+    <h1>Actualizar riesgo del estudiante</h1>
+    <p>Seleccione el nuevo riesgo</p>
+    <ul>
+      <li><i class="fas fa-circle green"></i> Sin riesgo</li>
+      <li><i class="fas fa-circle yellow"></i> Leve</li>
+      <li><i class="fas fa-circle orange"></i> Moderado</li>
+      <li><i class="fas fa-circle red"></i> Crítico</li>
+    </ul>
+    <hr />
+    <div class="alert_options">
+      <button (click)="close()">Cancelar</button>
+      <button>Aceptar</button>
+    </div>
+  </div>
+</div>

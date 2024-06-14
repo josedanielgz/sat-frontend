@@ -1,0 +1,122 @@
+<div class="wrapper">
+  <nav>
+    <input type="checkbox" id="show-menu" #menuNavBar />
+    <div class="content">
+      <div class="logo pointer" (click)="toHome()">{{ title }}</div>
+      <ul class="links">
+        <li>
+          <a
+            class="pointer"
+            (click)="toHome()"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Inicio</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'estudiante' || isTeacher(roleUser)">
+          <a
+            (click)="closeMenu()"
+            routerLink="/docente"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver materias</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'estudiante'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/estudiante/listado-actividades"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver Actividades</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'jefe' || roleUser === 'vicerrector'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/vicerrector/postulados/1"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver postulados</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'jefe'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/jefe/semestres-courses"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver Semestres</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'jefe' || roleUser === 'vicerrector'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/reportes"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Crear Reportes</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'vicerrector'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/vicerrector/crear-usuario"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Crear Usuario</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'vicerrector'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/vicerrector/sugerencias/1"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver sugerencias</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'vicerrector'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/vicerrector"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver Facultades</a
+          >
+        </li>
+        <li *ngIf="roleUser !== 'estudiante' && !isTeacher(roleUser)">
+          <a
+            (click)="closeMenu()"
+            routerLink="/administrativo"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Ver citas</a
+          >
+        </li>
+        <li *ngIf="roleUser !== 'estudiante' && !isTeacher(roleUser)">
+          <a
+            (click)="closeMenu()"
+            routerLink="/administrativo/perfil"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Perfil</a
+          >
+        </li>
+        <li *ngIf="roleUser === 'docente' || roleUser === 'jefe'">
+          <a
+            (click)="closeMenu()"
+            routerLink="/docente/perfil"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Perfil</a
+          >
+        </li>
+        <li><a class="pointer" (click)="logout()">Salir</a></li>
+      </ul>
+    </div>
+    <label for="show-menu" class="menu-icon"
+      ><i class="fas fa-bars fa-fw"></i
+    ></label>
+  </nav>
+</div>

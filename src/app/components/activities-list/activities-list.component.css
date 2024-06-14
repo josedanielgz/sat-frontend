@@ -1,0 +1,135 @@
+.content {
+  margin: 16px;
+  text-align: center;
+}
+
+.content p {
+  margin: 8px 0;
+}
+
+h2 {
+  margin: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  margin: 12px 16px 0px 16px;
+}
+
+table td i {
+  text-align: center;
+}
+
+table * {
+  font-size: 16px;
+}
+
+.red {
+  background: var(--red-primary-color);
+}
+
+.green {
+  background: var(--green-primary-color);
+}
+
+.orange {
+  background: var(--orange-primary-color);
+}
+
+.yellow {
+  background: var(--yellow-primary-color);
+}
+
+.gray {
+  background: var(--gray-menu);
+}
+
+.info_risk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info_risk p {
+  margin-right: 8px;
+}
+
+.info_risk .point {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .content {
+    margin: 0px 96px;
+  }
+
+  .content p {
+    font-size: 23px;
+  }
+
+  .table_scroll {
+    display: flex;
+    justify-content: center;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 32px;
+  }
+
+  h2 i {
+    font-size: 32px;
+  }
+
+  table * {
+    font-size: 22px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .content {
+    width: 50vw;
+    height: 70vh;
+  }
+  .table_scroll {
+    height: 50vh;
+    overflow: scroll;
+  }
+  .content p {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h2 i {
+    font-size: 40px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table * {
+    font-size: 20px;
+  }
+}

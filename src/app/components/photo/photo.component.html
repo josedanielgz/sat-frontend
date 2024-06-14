@@ -1,0 +1,23 @@
+<div class="photo_user">
+  <img *ngIf="photo" [src]="photo" alt="Foto de perfil del usuario" />
+  <div *ngIf="!photo" class="no_photo">
+    <span>{{ name }}</span>
+  </div>
+  <label *ngIf="show" title="Actualizar Foto" for="photo"
+    ><i class="fas fa-camera fa-fw pointer"></i
+  ></label>
+  <label *ngIf="isEdit" class="save" title="Confirmar">
+    <i
+      *ngIf="!loading"
+      (click)="loadImage()"
+      class="fas fa-check fa-fw pointer green"
+    ></i
+    ><i *ngIf="loading" class="fas fa-spinner fa-spin fa-fw pointer green"></i
+  ></label>
+  <input
+    type="file"
+    name="photo"
+    id="photo"
+    (change)="onFileSelected($event)"
+  />
+</div>

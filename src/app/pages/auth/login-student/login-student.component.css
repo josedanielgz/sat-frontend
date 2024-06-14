@@ -1,0 +1,227 @@
+.content {
+  max-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+  background: var(--gray-color);
+}
+
+h1 {
+  font-size: 40px;
+  color: var(--dark-color);
+  font-weight: 700;
+  margin-top: -16px;
+}
+
+button {
+  display: none;
+}
+
+.auth_container {
+  text-align: center;
+  position: relative;
+}
+
+.auth_header {
+  margin: 16px 0;
+}
+
+.auth_header p {
+  color: #a79e95;
+}
+
+.copyright {
+  color: var(--red-primary-color);
+  font-size: 14px;
+}
+
+.ilustration {
+  visibility: hidden;
+}
+
+.btn_google {
+  background: white;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px;
+  border-radius: 3px;
+  padding: 3px;
+  cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  margin: 10px;
+}
+
+.btn_google:hover {
+  background: var(--red-primary-color);
+  transition: all 0.3s ease;
+}
+
+.btn_google:hover > span {
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn_google span i {
+  margin-left: 8px;
+}
+
+.btn_google figure {
+  background: white;
+  padding: 18px 17px 16px 17px;
+  border-radius: 3px;
+}
+
+.btn_google figure img {
+  width: 20px;
+  height: 20px;
+}
+
+.btn_google span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #757575;
+  text-align: left;
+}
+
+.role_auth {
+  margin: 32px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role_auth * {
+  color: var(--red-primary-color);
+}
+
+.role_auth i {
+  font-size: 30px;
+}
+
+.role_auth p {
+  font-size: 20px;
+  margin-left: 16px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  img {
+    width: 315px;
+    height: 200px;
+  }
+
+  .content {
+    background-image: url("../../../../assets/image/background.svg");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 44px;
+    min-height: 100vh;
+    max-height: initial;
+  }
+
+  .copyright {
+    display: none;
+  }
+
+  .ilustration {
+    visibility: visible;
+  }
+
+  .ilustration img {
+    width: 380px;
+    height: 300px;
+  }
+
+  .btn_google {
+    gap: 8px;
+    margin: 8px;
+    padding: 0 8px;
+  }
+
+  .btn_google figure {
+    margin: 0px;
+    padding: 18px 14px 16px 14px;
+  }
+
+  .btn_google span {
+    font-size: 18px;
+  }
+
+  .btn_google span i {
+    margin-left: 4px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  img {
+    width: 192px;
+    height: 121px;
+  }
+
+  button {
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .content {
+    background-image: url("../../../../assets/image/background_desktop.svg");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 112px;
+    height: 100vh;
+  }
+
+  .copyright {
+    display: none;
+  }
+
+  .ilustration {
+    visibility: visible;
+  }
+
+  .ilustration img {
+    width: 530px;
+    height: 425px;
+  }
+
+  .auth_container {
+    min-width: 420px;
+  }
+
+  .auth_header {
+    width: 100%;
+    margin: 32px 0;
+  }
+
+  .auth_header {
+    margin-left: 16px;
+  }
+
+  .auth_header p {
+    font-size: 20px;
+  }
+
+  .content {
+    padding: 58px;
+  }
+
+  .btn_google figure img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn_google span {
+    font-size: 20px;
+  }
+}

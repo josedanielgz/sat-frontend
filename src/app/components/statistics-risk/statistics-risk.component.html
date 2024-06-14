@@ -1,0 +1,13 @@
+<div class="statistics animate__animated animate__fadeIn">
+  <div
+    *ngFor="let item of statistics"
+    (click)="toInRisk(item.type, item.total)"
+    [class]="getClass(item.type)"
+  >
+    <h3 *ngIf="loading">
+      <i class="fas fa-spinner fa-spin fa-fw fa-sm"></i>
+    </h3>
+    <h3 *ngIf="!loading">{{ item.counter }}</h3>
+    <p>{{ item.type }}</p>
+  </div>
+</div>

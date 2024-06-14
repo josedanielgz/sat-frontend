@@ -1,0 +1,51 @@
+<div class="wrapper_alert" (click)="onClick($event)">
+  <div class="alert_container">
+    <h2 (click)="close()" class="pointer">
+      <i class="fas fa-times fa-fw"></i>
+    </h2>
+    <h1>Crear cita</h1>
+    <form [formGroup]="formMeet" (submit)="onSubmit()" class="form_auth">
+      <div
+        class="form_input"
+        [ngClass]="{ error: role.invalid && (role.dirty || role.touched) }"
+      >
+        <select formControlName="role" name="role" id="role">
+          <option *ngFor="let rol of roles" value="{{ rol._id.$oid }}">
+            {{ normalize(rol.role) }}
+          </option>
+        </select>
+        <i class="fas fa-user-tag"></i>
+      </div>
+      <div
+        class="form_input"
+        [ngClass]="{ error: date.invalid && (date.dirty || date.touched) }"
+      >
+        <input
+          formControlName="date"
+          min="{{ today | date: 'yyyy-MM-dd' }}"
+          type="date"
+          name="date"
+          id="date"
+          (change)="getSchedule()"
+        />
+      </div>
+      <div
+        class="form_input"
+        [ngClass]="{ error: hour.invalid && (hour.dirty || hour.touched) }"
+      >
+        <select formControlName="hour" name="hour" id="hour">
+          <option *ngIf="date.invalid" selected value="">
+            Seleccione la fecha primero
+          </option>
+          <option value="{{ item }}" *ngFor="let item of times">
+            {{ item }}
+          </option>
+        </select>
+        <i class="fas fa-clock"></i>
+      </div>
+      <button [disabled]="formMeet.invalid || loading" type="submit">
+        Agendar <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </form>
+  </div>
+</div>

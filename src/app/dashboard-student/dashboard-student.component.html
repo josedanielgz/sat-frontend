@@ -1,0 +1,15 @@
+<app-loading *ngIf="loading" class="loading"></app-loading>
+
+<div class="animate__animated animate__fadeIn" *ngIf="!loading">
+  <app-navbar></app-navbar>
+  <div class="app_wrapper">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-floating-button class="floating"></app-floating-button>
+</div>
+<div class="ac_012" *ngIf="!loading && ac012">
+  <i class="fas fa-exclamation-triangle text_012">
+    El estudiante se encuentra en el Acuerdo_012</i
+  >
+</div>

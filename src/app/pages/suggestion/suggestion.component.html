@@ -1,0 +1,168 @@
+<div class="suggestion_container">
+  <app-search-student [title]="title"></app-search-student>
+
+  <app-loading class="loading" *ngIf="loading"></app-loading>
+
+  <div *ngIf="!loading">
+    <div class="suggestion_options">
+      <div class="actions">
+        <label for="all">
+          Todos
+          <input
+            type="checkbox"
+            name="all"
+            id="all"
+            (change)="all($event)"
+            #allCheck
+          />
+        </label>
+        <i (click)="responseSuggestion('rejected')" class="fas fa-trash"></i>
+        <i (click)="responseSuggestion('accepted')" class="fas fa-check"></i>
+        <i
+          title="Ver todos"
+          (click)="changeShow('')"
+          class="fas fa-sync-alt"
+        ></i>
+      </div>
+      <input type="checkbox" name="onShow" id="onShow" #options />
+      <label for="onShow" class="filter">
+        <i class="fas fa-filter pointer"></i>
+      </label>
+      <ul>
+        <li (click)="changeShow('date')">Ver por fecha</li>
+        <li (click)="changeShow('profit')">Ver por beneficio</li>
+        <li (click)="changeShow('risk')">Ver por riesgo</li>
+        <li (click)="changeShow('role')">Ver por rol</li>
+        <li (click)="changeShow('')">Ver todos</li>
+      </ul>
+    </div>
+
+    <div class="list_filter">
+      <form
+        class="byDate"
+        name="byDate"
+        (submit)="onSubmit($event)"
+        *ngIf="show === 'date'"
+      >
+        <div class="form_input">
+          <label for="from">Desde:</label>
+          <input
+            type="date"
+            name="from"
+            id="from"
+            value="{{ startDate | date: 'yyyy-MM-dd' }}"
+          />
+        </div>
+        <div class="form_input">
+          <label for="to">Hasta:</label>
+          <input
+            type="date"
+            name="to"
+            id="to"
+            value="{{ endDate | date: 'yyyy-MM-dd' }}"
+          />
+        </div>
+        <button type="submit">Filtrar <i class="fas fa-search"></i></button>
+      </form>
+      <form
+        class="byRisk"
+        name="byRisk"
+        (submit)="onSubmit($event)"
+        *ngIf="show === 'risk'"
+      >
+        <div class="form_input">
+          <label for="toSelect">Riesgo</label>
+          <select name="toSelect" id="toSelect">
+            <option value="academico">Académico</option>
+            <option value="socioeconomico">Socioeconómico</option>
+            <option value="individual">Individual</option>
+            <option value="institucional">Institucional</option>
+          </select>
+        </div>
+        <button type="submit">Filtrar <i class="fas fa-search"></i></button>
+      </form>
+      <form
+        class="byRole"
+        name="byRole"
+        (submit)="onSubmit($event)"
+        *ngIf="show === 'role'"
+      >
+        <div class="form_input">
+          <label for="toSelect2">Rol</label>
+          <select name="toSelect2" id="toSelect2">
+            <option *ngFor="let rol of roles" value="{{ rol._id.$oid }}">
+              {{ normalize(rol.role) }}
+            </option>
+          </select>
+        </div>
+        <button type="submit">Filtrar <i class="fas fa-search"></i></button>
+      </form>
+      <form
+        class="byProfit"
+        (submit)="onSubmit($event)"
+        *ngIf="show === 'profit'"
+        name="byProfit"
+      >
+        <div class="form_input">
+          <label for="toSelect3">Beneficio</label>
+          <select name="toSelect3" id="toSelect3">
+            <option *ngFor="let item of profits" value="{{ item.nombre }}">
+              {{ item.nombre }}
+            </option>
+          </select>
+        </div>
+        <button type="submit">Filtrar <i class="fas fa-search"></i></button>
+      </form>
+    </div>
+
+    <p class="text_center" *ngIf="!suggestions.length">
+      No se encontrarón resultados
+    </p>
+    <div class="table" *ngIf="suggestions.length">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Estudiante</th>
+            <th scope="col">Programa</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Beneficio</th>
+            <th scope="col">Por</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of suggestions; let i = index"
+            [ngClass]="{ selection: item.select }"
+            (click)="selected(i)"
+          >
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.student.codigo }}</td>
+            <td>{{ item.student.nombre }}</td>
+            <td>{{ item.student.programa }}</td>
+            <td>{{ item.date | date: "MMM d, y" }}</td>
+            <td [title]="item.profit.riesgo">
+              <i [class]="getIcon(item.profit.riesgo)"></i> |
+              {{ item.profit.nombre }}
+            </td>
+            <td [title]="item.admin.rol">
+              <i [class]="getIcon(item.admin.rol)"></i> |
+              {{ item.admin.nombre }}
+              {{ item.admin.apellido }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <a
+        *ngFor="let item of totalPages"
+        routerLink="/vicerrector/sugerencias/{{ item }}"
+        routerLinkActive="page_active"
+        >{{ item }}</a
+      >
+    </div>
+  </div>
+</div>

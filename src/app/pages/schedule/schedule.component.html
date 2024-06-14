@@ -1,0 +1,110 @@
+<div class="wrapper_schedule">
+  <div class="activity">
+    <app-search-global></app-search-global>
+    <div class="activity_button">
+      <button
+        *ngIf="role === 'vicerrector'"
+        routerLink="/vicerrector/actividades"
+      >
+        Actividades
+      </button>
+    </div>
+  </div>
+  <app-loading *ngIf="loading"></app-loading>
+
+  <div *ngIf="!loading">
+    <p (click)="onShowModal()" class="filter animate__animated animate__fadeIn">
+      Agregar Filtros <i class="fas fa-filter"></i>
+    </p>
+
+    <div class="quotes animate__animated animate__fadeIn">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Fecha</th>
+            <th>Hora 24h</th>
+            <th>Estudiante</th>
+            <th>Estado</th>
+            <th *ngIf="state === 'RECHAZADA'">Motivo</th>
+            <th *ngIf="state === 'RECHAZADA'">Notificar</th>
+            <th>Ir</th>
+            <th *ngIf="state !== 'RECHAZADA'">¿Asistió?</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!loading && meets.length > 0">
+          <tr *ngFor="let meet of meets; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ meet.date | date: "EEEE, d MMMM y" }}</td>
+            <td>{{ meet.hour ? meet.hour : "--:--" }}</td>
+            <td>{{ meet.student.nombre }}</td>
+            <td>{{ meet.state }}</td>
+            <td *ngIf="state === 'RECHAZADA'">{{ meet.reason }}</td>
+            <td *ngIf="state === 'RECHAZADA'">
+              <button
+                title="Crear nueva cita"
+                (click)="
+                  openModalNotification(meet.postulation, meet.student.codigo)
+                "
+              >
+                <i *ngIf="!loadingNewMeet" class="fas fa-clipboard"></i>
+                <i
+                  *ngIf="loadingNewMeet"
+                  class="fas fa-spinner fa-pulse fa-fw"
+                ></i>
+              </button>
+            </td>
+            <td class="pointer" (click)="toStudent(meet.student.codigo)">
+              <i class="fas fa-search red"></i>
+            </td>
+            <td class="attendance" *ngIf="state !== 'RECHAZADA'">
+              <div class="option-attendance">
+                <label for="not"><i class="fas fa-times"></i></label>
+                <input
+                  type="checkbox"
+                  [checked]="false"
+                  (change)="not(meet._id.$oid, $event, i)"
+                  id="not"
+                  #checkboxNot
+                />
+              </div>
+              <div class="option-attendance">
+                <label for="yes"><i class="fas fa-check"></i></label>
+                <input
+                  type="checkbox"
+                  [checked]="false"
+                  (change)="yeah(meet._id.$oid, $event, meet.student.codigo, i)"
+                  id="yes"
+                  #checkboxYeah
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p *ngIf="meets.length === 0">No se encontrarón citas programadas</p>
+
+    <div class="pagination">
+      <a
+        *ngFor="let item of totalPages"
+        routerLink="/administrativo/{{ item }}"
+        routerLinkActive="active"
+        [ngClass]="{ active: page === 1 && item === page }"
+        >{{ item }}</a
+      >
+    </div>
+  </div>
+</div>
+
+<app-modal-meet
+  *ngIf="showModal"
+  (isClosed)="onShowModal($event)"
+></app-modal-meet>
+
+<app-notification-date
+  *ngIf="showDate"
+  (isClosed)="showDateNotification($event)"
+  [postulation]="postulation"
+></app-notification-date>

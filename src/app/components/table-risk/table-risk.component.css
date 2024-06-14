@@ -1,0 +1,95 @@
+.table_students {
+  margin-top: 32px;
+  background: var(--gray-menu);
+  text-align: center;
+  width: 90vw;
+  overflow: scroll;
+  min-height: 150px;
+}
+
+.table_students table {
+  width: 480px;
+}
+
+.table_students table thead tr th {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.table_students table tbody tr td {
+  font-size: 12px;
+  padding: 1px 0;
+}
+
+.table_students table tbody tr:hover {
+  background: rgba(128, 128, 128, 0.267);
+}
+
+.filter {
+  position: relative;
+  z-index: 1;
+}
+
+.options {
+  position: absolute;
+  list-style: none;
+  background: var(--gray-dark-color);
+  padding: 16px;
+  border: 1px solid var(--dark-color);
+}
+
+.options li {
+  font-size: 14px;
+  margin: 4px 0px;
+  cursor: pointer;
+}
+
+.options li:hover {
+  font-weight: bold;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .table_students table thead tr th {
+    font-size: 22px;
+  }
+
+  .table_students {
+    width: 90vw;
+    min-height: 200px;
+    margin: auto;
+  }
+
+  .table_students table {
+    width: 730px;
+  }
+  .table_students table tbody tr td {
+    font-size: 20px;
+  }
+
+  .options li {
+    font-size: 20px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .table_students {
+    width: 95vw;
+    margin: auto;
+    min-height: 250px;
+  }
+  .table_students table {
+    width: 1220px;
+  }
+
+  .options {
+    width: 100%;
+  }
+
+  .options li {
+    font-size: 16px;
+  }
+}

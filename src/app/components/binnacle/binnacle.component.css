@@ -1,0 +1,156 @@
+.binnacle_options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.binnacle h3 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  padding: 10px;
+  border: 2px solid black;
+  height: 150px;
+}
+
+#toForm {
+  margin-top: 320px;
+}
+
+.text hr {
+  margin: 16px 0;
+}
+
+.pdf {
+  margin-left: 8px;
+}
+
+.wrapper_binnacle {
+  margin: 32px 16px;
+  text-align: center;
+}
+
+.binnacle-text {
+  margin: 16px 0;
+  text-align: justify;
+  background: var(--gray-menu);
+  padding: 16px;
+  overflow-y: scroll;
+}
+
+.text p span {
+  font-weight: bold;
+}
+
+.textarea {
+  position: relative;
+  width: 100%;
+}
+
+.textarea label {
+  position: absolute;
+  background: white;
+  top: -16px;
+  left: 32px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+button {
+  background: var(--green-primary-color);
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .wrapper_binnacle {
+    margin: 32px 80px;
+    text-align: center;
+  }
+
+  #toForm {
+    margin-top: 300px;
+  }
+
+  .binnacle_options > a {
+    font-size: 20px;
+  }
+
+  .binnacle-text p {
+    font-size: 20px;
+  }
+
+  .binnacle,
+  .recommendation,
+  button {
+    margin-top: 32px;
+  }
+
+  .text p {
+    font-size: 20px;
+  }
+
+  .text blockquote {
+    font-size: 18px;
+    text-align: right;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_binnacle {
+    margin: 0 16px;
+    width: 50vw;
+    height: 460px;
+    display: grid;
+    grid-template-rows: 300px auto;
+    gap: 0;
+  }
+
+  #toForm {
+    margin-top: 0;
+  }
+
+  .show {
+    grid-template-rows: 100% !important;
+  }
+
+  .binnacle-text {
+    height: 100%;
+    margin: 6px 0;
+    overflow-y: scroll;
+    text-align: justify;
+    background: var(--gray-menu);
+  }
+  .binnacle_not {
+    text-align: center;
+  }
+
+  .recommendation {
+    margin-top: 10px;
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  .text p {
+    margin-bottom: 8px;
+  }
+
+  .text blockquote {
+    font-size: 14px;
+    text-align: right;
+  }
+
+  button {
+    margin-top: 0;
+  }
+}

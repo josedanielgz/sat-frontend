@@ -1,0 +1,18 @@
+<div class="wrapper_alert" (click)="onClick($event)">
+  <div class="alert_container">
+    <h3>Administrativos disponibles</h3>
+    <hr />
+    <div class="list_admin">
+      <div *ngFor="let item of admins" class="admin">
+        <img *ngIf="item.foto" [src]="item.foto" alt="foto del administrador" />
+        <div *ngIf="!item.foto" class="no_photo">
+          <span> {{ item.nombre.charAt(0) }}{{ item.apellido.charAt(0) }}</span>
+        </div>
+        <p>{{ item.nombre }} {{ item.apellido }}</p>
+        <a class="pointer" (click)="toChat(item.documento)"
+          ><i class="fas fa-envelope"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</div>

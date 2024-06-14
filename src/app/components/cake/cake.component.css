@@ -1,0 +1,88 @@
+.cake_container {
+  margin: 16px 0;
+}
+
+.cake {
+  width: 100%;
+  position: relative;
+}
+
+.cake span {
+  position: absolute;
+  left: 123px;
+  top: 80px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--dark-color);
+}
+
+.list_exam {
+  border-radius: 10px;
+  padding: 8px 16px;
+  background: var(--gray-menu);
+}
+
+.list_exam ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.list_exam ul li {
+  font-size: 20px;
+  cursor: pointer;
+}
+.cake_loading {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.active {
+  color: var(--red-primary-color);
+  border-bottom: 2px solid var(--red-primary-color);
+  font-weight: bold;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .list_exam {
+    width: 50%;
+    margin: auto;
+  }
+
+  .list_exam ul li span {
+    font-size: 20px;
+  }
+
+  .cake span {
+    left: 70px;
+    top: 80px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .list_exam {
+    width: 40%;
+    margin: auto;
+  }
+
+  .list_exam ul li {
+    font-size: 22px;
+  }
+
+  .cake {
+    width: 48%;
+    margin: auto;
+  }
+
+  .cake span {
+    left: 75px;
+    top: 80px;
+  }
+}

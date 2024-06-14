@@ -1,0 +1,166 @@
+<div class="content">
+  <div class="container">
+    <div class="title">
+      <h1>Crear Usuario</h1>
+    </div>
+    <div class="form">
+      <form [formGroup]="formCreateUser" (submit)="onSubmit()">
+        <div class="campu">
+          <label for="nombre">Nombres</label>
+          <input
+            [ngClass]="{
+              errorUser: nombre.invalid && (nombre.dirty || nombre.touched)
+            }"
+            formControlName="nombre"
+            autocomplete="off"
+            name="nombre"
+            required
+          />
+          <i
+            *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw alert"
+            id="nombre"
+          ></i>
+
+          <div class="popoverUser">
+            <ul *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <li>* El nombre es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+        <div class="campu">
+          <label for="apellido">Apellidos</label>
+          <input
+            [ngClass]="{
+              errorUser:
+                apellido.invalid && (apellido.dirty || apellido.touched)
+            }"
+            formControlName="apellido"
+            name="apellido"
+            autocomplete="off"
+            required
+          />
+          <i
+            *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw alert"
+            id="apellido"
+          ></i>
+          <div class="popoverUser">
+            <ul
+              *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+            >
+              <li>* El apellido es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+        <div class="campu">
+          <label for="tipoDocumento">Tipo de documento</label>
+          <select
+            name="tipoDocumento"
+            id="tipoDocumento"
+            formControlName="tipoDocumento"
+          >
+            <option value="cedulaCiudadania">Cédula de ciudadanía</option>
+            <option value="cedulaExtranjeria">Cédula de extranjería</option>
+            <option value="pasaporteColombiano">Pasaporte colombiano</option>
+            <option value="pasaporteExtranjero">Pasaporte extranjero</option>
+            <option value="documentoVenezolano">
+              Documento nacional de identificacion venezolana
+            </option>
+          </select>
+        </div>
+        <div class="campu">
+          <div class="role">
+            <label for="rol">Rol</label>
+            <i class="fas fa-user-plus pointer" (click)="createRole()"></i>
+          </div>
+          <select name="rol" id="rol" formControlName="rol">
+            <option *ngFor="let rol of roles" value="{{ rol._id.$oid }}">
+              {{ rol.role }}
+            </option>
+          </select>
+        </div>
+        <div class="campu">
+          <label for="documento">Documento</label>
+          <input
+            [ngClass]="{
+              errorUser:
+                documento.invalid && (documento.dirty || documento.touched)
+            }"
+            formControlName="documento"
+            name="documento"
+            autocomplete="off"
+            required
+          />
+          <i
+            *ngIf="documento.invalid && (documento.dirty || documento.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw alert"
+            id="documento"
+          ></i>
+          <div class="popoverUser">
+            <ul
+              *ngIf="
+                documento.invalid && (documento.dirty || documento.touched)
+              "
+            >
+              <li>* Debe tener 8 ó 10 caracteres</li>
+            </ul>
+          </div>
+        </div>
+        <div class="campu">
+          <label for="telefono">Telefono</label>
+          <input
+            [ngClass]="{
+              errorUser:
+                documento.invalid && (documento.dirty || documento.touched)
+            }"
+            formControlName="telefono"
+            name="telefono"
+            autocomplete="off"
+            required
+          />
+          <i
+            *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw alert"
+            id="telefono"
+          ></i>
+          <div class="popoverUser">
+            <ul
+              *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+            >
+              <li>* Debe tener 7 ó 10 caracteres</li>
+            </ul>
+          </div>
+        </div>
+        <div class="campu">
+          <label for="correo">Correo</label>
+          <input
+            [ngClass]="{
+              errorUser: correo.invalid && (correo.dirty || correo.touched)
+            }"
+            autocomplete="off"
+            formControlName="correo"
+            name="correo"
+            required
+          />
+          <i
+            *ngIf="correo.invalid && (correo.dirty || correo.touched)"
+            class="fas fa-exclamation-triangle pointer fa-fw alert"
+            id="correo"
+          ></i>
+          <div class="popoverUser">
+            <ul *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+              <li>* El correo es obligatorio</li>
+            </ul>
+          </div>
+        </div>
+        <button [disabled]="formCreateUser.invalid || loading" type="submit">
+          Crear usuario
+          <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-modal-role *ngIf="create" (isClosed)="createRole($event)">
+</app-modal-role>

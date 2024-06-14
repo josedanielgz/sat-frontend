@@ -1,0 +1,52 @@
+<input type="checkbox" id="floating" #checkboxNotification />
+<div
+  class="notifications"
+  [ngClass]="{ animate_button: unread > 0 || counter > 0 }"
+>
+  <label for="floating"><i class="fas fa-bell"></i></label>
+</div>
+<div class="list_notification animate__animated animate__fadeIn">
+  <h4>Notificaciones</h4>
+  <hr />
+  <ul>
+    <li
+      class="pointer no_read animate__animated animate__zoomIn"
+      *ngIf="!notification.length && counter === 0"
+    >
+      No tiene notificaciones
+    </li>
+    <li
+      *ngIf="(role === 'jefe' || role === 'vicerrector') && counter > 0"
+      class="pointer no_read"
+    >
+      <div (click)="toPostulation()" class="animate_animated animate__fadeIn">
+        <p>
+          Tiene {{ counter }} postulaciones Sin
+          {{ role === "jefe" ? "Atender" : "Revisar" }}
+        </p>
+        <span
+          ><i class="fas fa-clock red"></i>
+          Hoy
+        </span>
+      </div>
+    </li>
+    <li
+      *ngFor="let item of notification"
+      fragment="contenedor"
+      class="pointer animate__animated animate__zoomIn"
+      [ngClass]="{ no_read: item.isActive }"
+    >
+      <div (click)="closeButton(item)">
+        <p>{{ item.title }}</p>
+        <span
+          ><i class="fas fa-clock red"></i>
+          {{ item.date | date: " h:mm a" }}
+        </span>
+      </div>
+      <i
+        (click)="deleteNotification(item._id.$oid)"
+        class="fas fa-trash-alt"
+      ></i>
+    </li>
+  </ul>
+</div>

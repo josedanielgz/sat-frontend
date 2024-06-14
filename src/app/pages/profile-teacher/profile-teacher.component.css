@@ -1,0 +1,30 @@
+.content{
+    margin:16px;
+}
+
+
+
+/*Table*/
+
+@media (min-width:768px)  and (max-width:1151px){
+    
+}
+/*Desktop*/
+
+@media (min-width:1152px){
+    .content{
+        display: flex;
+        margin-left: 50px;
+    }
+    .profile{
+        width: 45vw;
+    } 
+    .picture{
+    width: 55vw;
+    background-image: url("../../../assets/image/teacher.svg");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-size: cover;
+    
+    }
+}

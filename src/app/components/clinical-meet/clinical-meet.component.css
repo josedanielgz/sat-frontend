@@ -1,0 +1,185 @@
+.wrapper_history_meet {
+  margin: 32px 16px;
+  text-align: center;
+}
+
+.title_history_meet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title_history_meet h3 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.title_history_meet button {
+  width: 100px;
+  display: none;
+}
+
+.info_meet {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.info_meet p span {
+  font-weight: bold;
+}
+
+.text_insert {
+  background: var(--gray-menu);
+  border: 1px solid var(--dark-color);
+  position: relative;
+  margin: 32px 0;
+}
+
+.text_insert p {
+  font-weight: bold;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 8px;
+  line-height: 40px;
+  background: var(--gray-dark-color);
+  border-radius: 10px;
+  position: absolute;
+  text-transform: uppercase;
+  left: -1px;
+  top: -20px;
+}
+
+.text_insert p span {
+  font-size: 12px;
+  display: none;
+}
+
+.text_insert textarea {
+  width: 100%;
+  resize: none;
+  padding: 20px 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.list_measurements {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 8px;
+  gap: 8px;
+  background: var(--gray-menu);
+}
+
+.measure {
+  text-align: center;
+}
+
+.measure label {
+  font-weight: bold;
+}
+
+.input_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.input_icon input {
+  margin-left: 8px;
+  padding: 0 8px;
+}
+
+.input_icon i {
+  font-size: 25px;
+  color: var(--red-primary-color);
+  cursor: pointer;
+}
+
+.list_text button {
+  display: initial;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .wrapper_history_meet {
+    margin: 32px 80px;
+  }
+
+  .wrapper_history_meet h3 {
+    font-size: 25px;
+  }
+
+  .info_meet {
+    justify-content: center;
+  }
+
+  .info_meet * {
+    font-size: 20px;
+  }
+
+  .text_insert p span {
+    display: initial;
+    font-size: 12px;
+  }
+
+  .title_history_meet button {
+    display: none;
+  }
+
+  .list_measurements {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .input_icon input {
+    width: 100px;
+  }
+
+  .list_text button {
+    display: initial;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .wrapper_history_meet {
+    margin-top: -32px;
+    width: 50vw;
+    height: 480px;
+  }
+
+  .info_meet {
+    margin: 0;
+  }
+
+  .text_insert p span {
+    display: initial;
+  }
+
+  .title_history_meet {
+    margin: 0;
+  }
+
+  .title_history_meet button {
+    display: initial;
+  }
+
+  .list_measurements {
+    margin-top: -16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .input_icon input {
+    width: 100px;
+  }
+
+  .list_text button {
+    display: none;
+  }
+}

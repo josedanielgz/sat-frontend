@@ -1,0 +1,169 @@
+.wrapper_alert {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.alert_container {
+  width: 294px;
+  padding: 8px;
+  background: var(--white);
+  text-align: center;
+  border-radius: 25px;
+  margin-top: -50px;
+  height: 450px;
+  overflow-y: scroll;
+}
+
+.alert_container h3 {
+  font-weight: bold;
+}
+
+.alert_container hr {
+  margin: 8px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.campu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+  margin: 8px 0;
+  background: var(--gray-menu);
+  padding: 5px 0;
+  border-radius: 10px;
+}
+
+.campu label {
+  font-weight: bold;
+}
+
+.campu input,
+.campu textarea,
+.campu select {
+  width: 100%;
+  outline: none;
+  border: none;
+  background: transparent;
+  appearance: none;
+}
+
+.campu textarea {
+  resize: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.campu i {
+  color: red;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 245px;
+}
+.errorActivity {
+  border: 1px solid var(--red-primary-color) !important;
+  position: relative;
+}
+
+.errorActivity i,
+.errorActivity input,
+.errorActivity input::placeholder {
+  color: var(--red-primary-color) !important;
+}
+
+#name:hover ~ .popoverActivity,
+#place:hover ~ .popoverActivity,
+#risk:hover ~ .popoverActivity,
+#riskLevel:hover ~ .popoverActivity,
+#description:hover ~ .popoverActivity {
+  visibility: visible;
+  transition: all 0.5s ease-in;
+}
+
+.popoverActivity {
+  position: absolute;
+  right: 48px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--red-primary-color);
+  color: var(--white);
+  z-index: 1;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.popoverActivity::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  background: var(--red-primary-color);
+  right: -6px;
+  z-index: -1;
+  transform: rotate(45deg);
+}
+
+.popoverActivity ul {
+  list-style: none;
+}
+
+.Activity ul li {
+  font-size: 14px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .alert_container {
+    width: 458px;
+    margin-top: 0;
+    height: unset;
+    overflow-y: unset;
+    padding: 16px;
+  }
+  .campu i {
+    margin-top: 10px;
+    margin-left: 390px;
+  }
+  .campu input,
+  .campu label,
+  .campu select {
+    font-size: 22px;
+  }
+  .campu textArea {
+    margin-left: 30px;
+    width: 280px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .alert_container {
+    width: 450px;
+    margin-top: 50px;
+    height: 500px;
+    padding: 16px;
+  }
+  .campu i {
+    margin-left: 380px;
+  }
+}

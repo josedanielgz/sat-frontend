@@ -1,0 +1,32 @@
+<div
+  class="wrapper_alert animate__animated animate__fadeIn"
+  (click)="onClick($event)"
+>
+  <form [formGroup]="formHelp" (submit)="onSubmit()" class="alert_container">
+    <div>
+      <h1>Añadir descripción</h1>
+      <p>Escriba las razones a tener en cuenta para la postulación</p>
+    </div>
+    <span>{{ description.value.length }}/200</span>
+    <textarea
+      autofocus
+      placeholder="Escriba la descripción..."
+      maxlength="200"
+      minlength="20"
+      formControlName="description"
+    ></textarea>
+    <p
+      *ngIf="description.invalid && (description.dirty || description.touched)"
+      class="red error"
+    >
+      Debe tener entre 20 y 200 caracteres
+    </p>
+    <hr />
+    <div class="alert_options">
+      <button (click)="close()">Cancelar</button>
+      <button [disabled]="formHelp.invalid || loading" type="submit">
+        Aceptar <i *ngIf="loading" class="fas fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </div>
+  </form>
+</div>

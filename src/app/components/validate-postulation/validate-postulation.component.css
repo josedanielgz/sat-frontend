@@ -1,0 +1,34 @@
+button {
+  background: var(--green-primary-color);
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+button:hover {
+  background: #0f9946;
+}
+
+.postulation {
+  margin: 5px;
+  padding: 0 8px;
+  text-align: justify;
+  background: var(--green-primary-color);
+  color: white;
+}
+
+.postulation p {
+  font-size: 14px;
+}
+
+.postulation span {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .postulation * {
+    font-size: 20px !important;
+  }
+}

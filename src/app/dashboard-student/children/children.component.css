@@ -1,0 +1,17 @@
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .profile_container {
+    display: flex;
+    align-items: center;
+    margin: 0 48px;
+  }
+
+  .profile_container .card {
+    width: 50vw;
+  }
+
+  .children_wrapper {
+    width: 50vw;
+  }
+}

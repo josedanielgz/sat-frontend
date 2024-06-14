@@ -1,0 +1,49 @@
+<div class="content">
+  <div class="auth_container">
+    <div class="auth_header">
+      <img src="/assets/image/Logo_SAT.svg" alt="Logo SAT" />
+      <h1>SAT</h1>
+      <p>Ingrese con los datos de divisist</p>
+    </div>
+    <div class="list_roles">
+      <div
+        class="role_auth pointer"
+        (click)="changeRole('teacher')"
+        [ngClass]="{ active: isTeacher }"
+      >
+        <i class="fas fa-chalkboard-teacher"></i>
+        <p>Docente</p>
+      </div>
+      <div
+        class="role_auth pointer"
+        (click)="changeRole()"
+        [ngClass]="{ active: isBoss }"
+      >
+        <i class="fas fa-user-tie"></i>
+        <p>Jefe de Plan</p>
+      </div>
+    </div>
+
+    <label class="btn_google" for="signIn">
+      <figure>
+        <img src="/assets/image/google-icon.svg" alt="Logo de Google" />
+      </figure>
+      <span
+        >Continuar con Google
+        <i *ngIf="loading" class="fas fa-spinner fa-spin"></i></span
+    ></label>
+    <button
+      id="signIn"
+      (click)="signIn()"
+      [disabled]="loading"
+      type="button"
+    ></button>
+    <p class="copyright">2021 © Todos los derechos reservados</p>
+  </div>
+  <div class="ilustration">
+    <img
+      src="/assets/image/ilustration.svg"
+      alt="Ilustración de una chica estudiando"
+    />
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.form_input {
+  background: var(--gray-menu);
+}
+
+.form_input i {
+  color: var(--red-primary-color);
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .form_input {
+    margin: auto;
+    width: 50vw;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1152px) {
+  .form_input {
+    width: 40vw;
+  }
+}
