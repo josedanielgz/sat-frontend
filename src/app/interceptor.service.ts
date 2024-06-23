@@ -24,10 +24,9 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('x-token') || '';
-    const headers = new HttpHeaders().append('x-token', token);
+
     const reqClone = req.clone({
-      headers,
+
     });
     return next.handle(reqClone).pipe(
       catchError((err: HttpErrorResponse) => {

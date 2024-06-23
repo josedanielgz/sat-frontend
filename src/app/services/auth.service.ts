@@ -32,7 +32,7 @@ import {
   UnsetUserActiveAction,
   SetUserActiveAction,
 } from '../reducer/ui/ui.actions';
-import { GoogleService } from './google.service';
+import { NewOAuthService } from './new.oauth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +47,7 @@ export class AuthService {
     private router: Router,
     private httpClient: HttpClient,
     private httpBackend: HttpBackend,
-    private googleService: GoogleService
+    private oauthService: NewOAuthService
   ) {
     this.withOutToken = new HttpClient(this.httpBackend);
     this.isAuth$ = this.store.select('auth');
@@ -64,23 +64,80 @@ export class AuthService {
         .toPromise();
       const { ok, msg } = req;
       if (ok) {
-        localStorage.setItem('x-token', req.token.toString());
-        showAlert('success', msg);
-        this.store.dispatch(new SetUserActiveAction(req.data));
-        this.store.dispatch(new AddUserAction(req.data));
-        saveInLocalStorage('user-show', req.data);
-        typeUser === 'administrative'
-          ? this.router.navigate(['/administrativo'])
-          : this.router.navigate([`/${req.data.rol.toLowerCase()}`]);
+        this.handleSuccessfulLogin(req);
       } else {
         showAlert('error', msg);
       }
     } catch (error) {
-      this.store.dispatch(new SetError('Ocurrio un error en el servidor', '/'));
-      showAlert('error', error.error.msg);
-      this.router.navigate(['/error']);
+      this.handleLoginError(error);
     }
     this.store.dispatch(new FinishLoadingAction());
+  }
+
+  async loginWithGoogle(role: String) {
+    this.store.dispatch(new StartLoadingAction());
+    try {
+      const userInfo = await this.oauthService.login(role.toString());
+      if (userInfo && userInfo.email.endsWith('@ufps.edu.co')) {
+        const req = await this.withOutToken
+          .post<AuthResponse>(
+            `${this.endpoint}/auth/institutional/login-google`,
+            { correo: userInfo.email, rol: role }
+          )
+          .toPromise();
+
+
+        if (req.ok) {
+          this.handleSuccessfulLogin(req);
+        } else {
+          showAlert('error', req.msg);
+          this.oauthService.logout();
+        }
+      } else {
+        showAlert('error', 'Debe ingresar con el correo institucional de la UFPS');
+        this.oauthService.logout();
+      }
+    } catch (error) {
+      this.handleLoginError(error);
+    } finally {
+      this.store.dispatch(new FinishLoadingAction());
+    }
+  }
+
+  private handleSuccessfulLogin(req: AuthResponse) {
+    localStorage.setItem('x-token', req.token.toString());
+    showAlert('success', req.msg);
+    this.store.dispatch(new SetUserActiveAction(req.data));
+    this.store.dispatch(new AddUserAction(req.data));
+    saveInLocalStorage('user-show', req.data);
+    this.router.navigate([`/${req.data.rol.toLowerCase()}`]);
+  }
+
+  private handleLoginError(error: any) {
+    console.error(error);
+    this.store.dispatch(new SetError('Ocurrio un error en el servidor', '/'));
+    showAlert('error', error.error?.msg || 'Error de inicio de sesión');
+    this.router.navigate(['/error']);
+  }
+
+  logout(role: String) {
+    this.store.dispatch(new RemoveUserAction());
+    this.store.dispatch(new DeleteCourseAction());
+    this.store.dispatch(new UnsetUserActiveAction());
+    this.store.dispatch(new DesactiveCourseAction());
+    this.store.dispatch(new DeleteChatAction());
+    this.store.dispatch(new DeleteNotificationsAction());
+    this.store.dispatch(new FinishLoadingAction());
+    this.store.dispatch(new RemoveRiskAction());
+    this.store.dispatch(new removerActivityAction());
+    localStorage.clear();
+    const path = isTeacher(role)
+      ? 'docente'
+      : role === 'estudiante'
+      ? 'estudiante'
+      : 'administrativo';
+    this.oauthService.logout();
+    this.router.navigate([`${path}/iniciar-sesion`]);
   }
 
   renewToken() {
@@ -152,25 +209,6 @@ export class AuthService {
       .toPromise();
   }
 
-  logout(role: String) {
-    this.store.dispatch(new RemoveUserAction());
-    this.store.dispatch(new DeleteCourseAction());
-    this.store.dispatch(new UnsetUserActiveAction());
-    this.store.dispatch(new DesactiveCourseAction());
-    this.store.dispatch(new DeleteChatAction());
-    this.store.dispatch(new DeleteNotificationsAction());
-    this.store.dispatch(new FinishLoadingAction());
-    this.store.dispatch(new RemoveRiskAction());
-    this.store.dispatch(new removerActivityAction());
-    localStorage.clear();
-    const path = isTeacher(role)
-      ? 'docente'
-      : role === 'estudiante'
-      ? 'estudiante'
-      : 'administrativo';
-    this.googleService.singOut();
-    this.router.navigate([`${path}/iniciar-sesion`]);
-  }
 
   uploadPhoto(formData: FormData) {
     try {
