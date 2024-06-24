@@ -58,11 +58,18 @@ export class AuthService {
   async loginWithGoogle(role: String) {
     this.store.dispatch(new StartLoadingAction());
     try {
-      const loginResult = await this.oauthService.login(role);
-      if (loginResult) {
-        this.handleSuccessfulLogin(loginResult);
+      const userInfo = await this.oauthService.initLoginFlow();
+      if (userInfo && userInfo.email && userInfo.email.endsWith('@ufps.edu.co')) {
+        const loginResult = await this.oauthService.loginWithBackend(userInfo.email, role);
+        if (loginResult && loginResult.ok) {
+          this.handleSuccessfulLogin(loginResult);
+        } else {
+          showAlert('error', loginResult?.msg || 'Error durante el inicio de sesión');
+          this.router.navigate([`/${role.toLowerCase()}/iniciar-sesion`]);
+        }
       } else {
         showAlert('error', 'Debe ingresar con el correo institucional de la UFPS');
+        this.oauthService.logout();
         this.router.navigate([`/${role.toLowerCase()}/iniciar-sesion`]);
       }
     } catch (error) {
@@ -106,6 +113,8 @@ export class AuthService {
     this.oauthService.logout();
     this.router.navigate([`${path}/iniciar-sesion`]);
   }
+
+  // ... (resto de los métodos permanecen igual)
 
   renewToken() {
     return this.httpClient.get<AuthResponse>(`${this.endpoint}/auth/renew`).toPromise();
