@@ -1,86 +1,117 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
+import { Router } from '@angular/router';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+
+const authCodeFlowConfig: AuthConfig = {
+  issuer: 'https://accounts.google.com',
+  strictDiscoveryDocumentValidation: false,
+  redirectUri: window.location.origin,
+  clientId: '594625970943-8k5elv0om568kmfn76g8j7kbgctk67oi.apps.googleusercontent.com',
+  scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
+  showDebugInformation: !environment.production,
+};
+
+export interface UserInfo {
+  info: {
+    sub: string
+    email: string,
+    name: string,
+    picture: string
+  }
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewOAuthService {
-  private oauthConfig: AuthConfig = {
-    issuer: 'https://accounts.google.com',
-    strictDiscoveryDocumentValidation: false,
-    redirectUri: window.location.origin + '/estudiante',
-    clientId: '594625970943-8k5elv0om568kmfn76g8j7kbgctk67oi.apps.googleusercontent.com',
-    scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
-    responseType: 'code',
-    showDebugInformation: !environment.production,
-    useSilentRefresh: true,
-    silentRefreshTimeout: 5000,
-    timeoutFactor: 0.75,
-    sessionChecksEnabled: false,
-    clearHashAfterLogin: false,
-  };
+  private endpoint: string = environment.url_backend;
+  userProfileSubject = new Subject<UserInfo>();
 
-  constructor(private oauthService: OAuthService) {
-    this.oauthService.configure(this.oauthConfig);
-    //this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  constructor(
+    private readonly oAuthService: OAuthService,
+    private readonly httpClient: HttpClient,
+    private router: Router
+  ) {
+    this.configureOAuth();
   }
 
-  async initAuth(): Promise<void> {
-    try {
-      await this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    } catch (error) {
-      console.error('Error loading discovery document:', error);
-      throw error;
-    }
-  }
+  private configureOAuth() {
+    this.oAuthService.configure(authCodeFlowConfig);
+    this.oAuthService.logoutUrl = "https://www.google.com/accounts/Logout";
 
-  async login(role: string): Promise<any> {
-    try {
-      await this.initAuth(); // Aseguramos que el documento de descubrimiento se cargue primero
-      this.oauthService.initLoginFlow(); // Iniciamos el flujo de login
-
-      console.log('PASA EL LOGIN')
-      // Esperamos a que se complete la autenticación
-      const loginResult = await this.waitForAuthentication();
-      console.log(loginResult)
-      if (loginResult && this.oauthService.hasValidAccessToken()) {
-        const userProfile = await this.oauthService.loadUserProfile();
-        return {
-          email: userProfile['email'],
-          role: role
-        };
-
-      }
-      return null;
-    } catch (error) {
-      console.error('Error during login:', error);
-      throw error;
-    }
-  }
-
-  private waitForAuthentication(): Promise<boolean> {
-    return new Promise((resolve) => {
-      const subscription = this.oauthService.events.subscribe(event => {
-        if (event.type === 'token_received') {
-          subscription.unsubscribe();
-          resolve(true);
+    this.oAuthService.loadDiscoveryDocument().then(() => {
+      this.oAuthService.tryLoginImplicitFlow().then(() => {
+        if (!this.oAuthService.hasValidAccessToken()) {
+          this.oAuthService.initLoginFlow();
+        } else {
+          this.oAuthService.loadUserProfile().then((userProfile) => {
+            this.userProfileSubject.next(userProfile as UserInfo);
+          });
         }
       });
-
-      // Timeout after 2 minutes
-      setTimeout(() => {
-        subscription.unsubscribe();
-        resolve(false);
-      }, 120000);
     });
   }
 
+  async login(role: String): Promise<any> {
+    if (!this.oAuthService.hasValidAccessToken()) {
+      this.oAuthService.initLoginFlow();
+      return new Promise((resolve) => {
+        const subscription = this.userProfileSubject.subscribe(async (userProfile) => {
+          subscription.unsubscribe();
+          if (userProfile.info.email.endsWith('@ufps.edu.co')) {
+            const loginResult = await this.loginWithBackend(userProfile.info.email, role);
+            resolve(loginResult);
+          } else {
+            this.oAuthService.logOut();
+            resolve(null);
+          }
+        });
+      });
+    } else {
+      const userProfile = await this.oAuthService.loadUserProfile();
+      if (userProfile['email'].endsWith('@ufps.edu.co')) {
+        return this.loginWithBackend(userProfile['email'], role);
+      } else {
+        this.oAuthService.logOut();
+        return null;
+      }
+    }
+  }
+
+  private async loginWithBackend(email: string, role: String): Promise<any> {
+    try {
+      const req = await this.httpClient
+        .post<any>(
+          `${this.endpoint}/auth/institutional/login-google`,
+          { correo: email, rol: role }
+        )
+        .toPromise();
+
+      if (req.ok) {
+        return req;
+      } else {
+        this.oAuthService.logOut();
+        return null;
+      }
+    } catch (error) {
+      console.error('Error during backend login:', error);
+      this.oAuthService.logOut();
+      return null;
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return this.oAuthService.hasValidAccessToken();
+  }
+
   logout() {
-    this.oauthService.logOut();
+    this.oAuthService.logOut();
   }
 
   getAccessToken(): string {
-    return this.oauthService.getAccessToken();
+    return this.oAuthService.getAccessToken();
   }
 }

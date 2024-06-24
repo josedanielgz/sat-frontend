@@ -9,38 +9,23 @@ import { showAlert } from '../helpers/alert';
 import { saveInLocalStorage } from '../helpers/localStorage';
 import { isTeacher } from '../helpers/ui';
 import { AuthResponse, UserAuth } from '../model/auth';
-import { removerActivityAction } from '../reducer/activity/activity.action';
-import {
-  Role,
-  RoleResponse,
-  RoleSchedule,
-  ScheduleResponse,
-} from '../model/role';
+import { Role, RoleResponse, RoleSchedule, ScheduleResponse } from '../model/role';
 import { AddUserAction, RemoveUserAction } from '../reducer/auth/auth.actions';
 import { AuthState } from '../reducer/auth/auth.reducer';
 import { DeleteChatAction } from '../reducer/Chat/chat.actions';
-import {
-  DeleteCourseAction,
-  DesactiveCourseAction,
-} from '../reducer/course/course.actions';
+import { DeleteCourseAction, DesactiveCourseAction } from '../reducer/course/course.actions';
 import { DeleteNotificationsAction } from '../reducer/notification/notification.actions';
 import { RemoveRiskAction } from '../reducer/risk/risk.action';
-import {
-  StartLoadingAction,
-  FinishLoadingAction,
-  SetError,
-  UnsetUserActiveAction,
-  SetUserActiveAction,
-} from '../reducer/ui/ui.actions';
+import { StartLoadingAction, FinishLoadingAction, SetError, UnsetUserActiveAction, SetUserActiveAction } from '../reducer/ui/ui.actions';
 import { NewOAuthService } from './new.oauth.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  endpoint: String = environment.url_backend;
+  endpoint: string = environment.url_backend;
   withOutToken: HttpClient;
-  isAuth$: Observable<AuthState> = null;
+  isAuth$: Observable<AuthState>;
 
   constructor(
     private store: Store<AppState>,
@@ -49,24 +34,20 @@ export class AuthService {
     private httpBackend: HttpBackend,
     private oauthService: NewOAuthService
   ) {
-    this.withOutToken = new HttpClient(this.httpBackend);
+    this.withOutToken = new HttpClient(httpBackend);
     this.isAuth$ = this.store.select('auth');
   }
 
-  async login(dataLogin: UserAuth, typeUser: String) {
+  async login(dataLogin: UserAuth, typeUser: string) {
     this.store.dispatch(new StartLoadingAction());
     try {
       const req = await this.withOutToken
-        .post<AuthResponse>(
-          this.endpoint + '/auth/' + typeUser + '/login',
-          dataLogin
-        )
+        .post<AuthResponse>(`${this.endpoint}/auth/${typeUser}/login`, dataLogin)
         .toPromise();
-      const { ok, msg } = req;
-      if (ok) {
+      if (req.ok) {
         this.handleSuccessfulLogin(req);
       } else {
-        showAlert('error', msg);
+        showAlert('error', req.msg);
       }
     } catch (error) {
       this.handleLoginError(error);
@@ -77,25 +58,12 @@ export class AuthService {
   async loginWithGoogle(role: String) {
     this.store.dispatch(new StartLoadingAction());
     try {
-      const userInfo = await this.oauthService.login(role.toString());
-      if (userInfo && userInfo.email.endsWith('@ufps.edu.co')) {
-        const req = await this.withOutToken
-          .post<AuthResponse>(
-            `${this.endpoint}/auth/institutional/login-google`,
-            { correo: userInfo.email, rol: role }
-          )
-          .toPromise();
-
-
-        if (req.ok) {
-          this.handleSuccessfulLogin(req);
-        } else {
-          showAlert('error', req.msg);
-          this.oauthService.logout();
-        }
+      const loginResult = await this.oauthService.login(role);
+      if (loginResult) {
+        this.handleSuccessfulLogin(loginResult);
       } else {
         showAlert('error', 'Debe ingresar con el correo institucional de la UFPS');
-        this.oauthService.logout();
+        this.router.navigate([`/${role.toLowerCase()}/iniciar-sesion`]);
       }
     } catch (error) {
       this.handleLoginError(error);
@@ -114,8 +82,8 @@ export class AuthService {
   }
 
   private handleLoginError(error: any) {
-    console.error(error);
-    this.store.dispatch(new SetError('Ocurrio un error en el servidor', '/'));
+    console.error('Error durante el inicio de sesión:', error);
+    this.store.dispatch(new SetError('Ocurrió un error en el servidor', '/'));
     showAlert('error', error.error?.msg || 'Error de inicio de sesión');
     this.router.navigate(['/error']);
   }
@@ -129,7 +97,6 @@ export class AuthService {
     this.store.dispatch(new DeleteNotificationsAction());
     this.store.dispatch(new FinishLoadingAction());
     this.store.dispatch(new RemoveRiskAction());
-    this.store.dispatch(new removerActivityAction());
     localStorage.clear();
     const path = isTeacher(role)
       ? 'docente'
@@ -141,80 +108,48 @@ export class AuthService {
   }
 
   renewToken() {
-    return this.httpClient
-      .get<AuthResponse>(this.endpoint + '/auth/renew')
-      .toPromise();
+    return this.httpClient.get<AuthResponse>(`${this.endpoint}/auth/renew`).toPromise();
   }
 
-  validateUserAuth(role: String = '') {
-    return this.httpClient
-      .get<boolean>(this.endpoint + '/auth/validate-token/' + role)
-      .toPromise();
+  validateUserAuth(role: string = '') {
+    return this.httpClient.get<boolean>(`${this.endpoint}/auth/validate-token/${role}`).toPromise();
   }
 
-  sendEmailUpdatePassword(email) {
-    return this.httpClient
-      .post<Boolean>(
-        `${this.endpoint}/auth/administrative/recovery-password`,
-        email
-      )
-      .toPromise();
+  sendEmailUpdatePassword(email: string) {
+    return this.httpClient.post<boolean>(`${this.endpoint}/auth/administrative/recovery-password`, email).toPromise();
   }
 
-  updatePassword(password) {
-    return this.httpClient
-      .put<Boolean>(
-        `${this.endpoint}/auth/administrative/recovery-password`,
-        password
-      )
-      .toPromise();
+  updatePassword(password: string) {
+    return this.httpClient.put<boolean>(`${this.endpoint}/auth/administrative/recovery-password`, password).toPromise();
   }
 
-  changePassword(password) {
-    return this.httpClient
-      .put<Boolean>(
-        `${this.endpoint}/auth/administrative/change-password`,
-        password
-      )
-      .toPromise();
+  changePassword(password: string) {
+    return this.httpClient.put<boolean>(`${this.endpoint}/auth/administrative/change-password`, password).toPromise();
   }
 
   createRole(role: RoleSchedule) {
-    return this.httpClient
-      .post<RoleResponse>(`${this.endpoint}/role/`, role)
-      .toPromise();
+    return this.httpClient.post<RoleResponse>(`${this.endpoint}/role/`, role).toPromise();
   }
 
   listRoles() {
     return this.withOutToken.get<Role[]>(`${this.endpoint}/role/`).toPromise();
   }
 
-  updateSchedule(schedule) {
-    return this.httpClient
-      .put<any>(`${this.endpoint}/role/schedule`, schedule)
-      .toPromise();
+  updateSchedule(schedule: any) {
+    return this.httpClient.put<any>(`${this.endpoint}/role/schedule`, schedule).toPromise();
   }
 
-  getSchedule(role: String) {
-    return this.httpClient
-      .get<any>(`${this.endpoint}/role/schedule/${role}`)
-      .toPromise();
+  getSchedule(role: string) {
+    return this.httpClient.get<any>(`${this.endpoint}/role/schedule/${role}`).toPromise();
   }
 
   getScheduleOfRole(role: String, date: String) {
-    return this.httpClient
-      .get<ScheduleResponse>(
-        `${this.endpoint}/role/schedule/role/${role}/${date}`
-      )
-      .toPromise();
+    return this.httpClient.get<ScheduleResponse>(`${this.endpoint}/role/schedule/role/${role}/${date}`).toPromise();
   }
-
 
   uploadPhoto(formData: FormData) {
     try {
-      return this.httpClient
-        .put<any>(this.endpoint + '/auth/institutional/update-photo', formData)
-        .toPromise();
+      return this.httpClient.put<any>(`${this.endpoint}/auth/institutional/update-photo`, formData).toPromise();
     } catch (error) {
       console.error(error);
       return null;
