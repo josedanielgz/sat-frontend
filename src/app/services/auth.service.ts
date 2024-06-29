@@ -59,10 +59,12 @@ export class AuthService {
     this.store.dispatch(new StartLoadingAction());
     try {
       const userInfo = await this.oauthService.initLoginFlow();
+      console.log(userInfo)
       if (userInfo && userInfo.email && userInfo.email.endsWith('@ufps.edu.co')) {
         const loginResult = await this.oauthService.loginWithBackend(userInfo.email, role);
         if (loginResult && loginResult.ok) {
           this.handleSuccessfulLogin(loginResult);
+          console.log("Logueo exitoso")
         } else {
           showAlert('error', loginResult?.msg || 'Error durante el inicio de sesión');
           this.router.navigate([`/${role.toLowerCase()}/iniciar-sesion`]);
@@ -79,14 +81,14 @@ export class AuthService {
     }
   }
 
-  private handleSuccessfulLogin(req: AuthResponse) {
-    localStorage.setItem('x-token', req.token.toString());
-    showAlert('success', req.msg);
-    this.store.dispatch(new SetUserActiveAction(req.data));
-    this.store.dispatch(new AddUserAction(req.data));
-    saveInLocalStorage('user-show', req.data);
-    this.router.navigate([`/${req.data.rol.toLowerCase()}`]);
-  }
+  // private handleSuccessfulLogin(req: AuthResponse) {
+  //   localStorage.setItem('x-token', req.token.toString());
+  //   showAlert('success', req.msg);
+  //   this.store.dispatch(new SetUserActiveAction(req.data));
+  //   this.store.dispatch(new AddUserAction(req.data));
+  //   saveInLocalStorage('user-show', req.data);
+  //   this.router.navigate([`/${req.data.rol.toLowerCase()}`]);
+  // }
 
   private handleLoginError(error: any) {
     console.error('Error durante el inicio de sesión:', error);
@@ -114,6 +116,38 @@ export class AuthService {
     this.router.navigate([`${path}/iniciar-sesion`]);
   }
 
+  private handleSuccessfulLogin(req: AuthResponse) {
+    localStorage.setItem('x-token', req.token.toString());
+    showAlert('success', req.msg);
+    this.store.dispatch(new SetUserActiveAction(req.data));
+    this.store.dispatch(new AddUserAction(req.data));
+    saveInLocalStorage('user-show', req.data);
+    this.redirectBasedOnRole(req.data.rol);
+  }
+
+  private redirectBasedOnRole(role: string) {
+    switch (role.toLowerCase()) {
+      case 'docente':
+        this.router.navigate(['/docente']);
+        break;
+      case 'estudiante':
+        this.router.navigate(['/estudiante']);
+        break;
+      case 'vicerrector':
+        this.router.navigate(['/vicerrector']);
+        break;
+      case 'jefe':
+        this.router.navigate(['/jefe']);
+        break;
+      case 'administrativo':
+        this.router.navigate(['/administrativo']);
+        break;
+      default:
+        // Si el rol no coincide con ninguno de los anteriores, redirige a una ruta por defecto
+        this.router.navigate(['/estudiante/iniciar-sesion']);
+        break;
+    }
+  }
   // ... (resto de los métodos permanecen igual)
 
   renewToken() {
