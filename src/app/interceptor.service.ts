@@ -13,6 +13,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppState } from './app.reducers';
 import { SetError } from './reducer/ui/ui.actions';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -24,18 +25,23 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('x-token') || '';
-    const headers = new HttpHeaders().append('x-token', token);
-    const reqClone = req.clone({
-      headers,
-    });
-    return next.handle(reqClone).pipe(
-      catchError((err: HttpErrorResponse) => {
-        console.log(err);
-        this.store.dispatch(new SetError('Ocurrio un error', '/'));
-        this.router.navigate(['/error']);
-        return throwError(err.message);
-      })
-    );
+    // Comprueba si la solicitud es para tu API
+    if (req.url.startsWith(environment.url_backend)) {
+      const token = localStorage.getItem('x-token') || '';
+      const headers = new HttpHeaders().append('x-token', token);
+      const reqClone = req.clone({
+        headers,
+      });
+      return next.handle(reqClone).pipe(
+        catchError((err: HttpErrorResponse) => {
+          this.store.dispatch(new SetError('Ocurrió un error', '/'));
+          this.router.navigate(['/error']);
+          return throwError(err.message);
+        })
+      );
+    }
+
+    // Si la solicitud no es para tu API, déjala pasar sin modificaciones
+    return next.handle(req);
   }
 }

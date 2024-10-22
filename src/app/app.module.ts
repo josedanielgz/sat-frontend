@@ -61,6 +61,7 @@ import { ActivitiesStudentComponent } from './pages/activities-student/activitie
 import { ProfileTeacherTeacherComponent } from './pages/profile-teacher-teacher/profile-teacher-teacher.component';
 import { SemesterCoursesComponent } from './pages/semester-courses/semester-courses.component';
 import { CourseBossComponent } from './pages/course-boss/course-boss.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 registerLocaleData(localeEsAr, 'es-Ar');
 PdfMakeWrapper.setFonts(pdfFonts);
@@ -110,6 +111,7 @@ PdfMakeWrapper.setFonts(pdfFonts);
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    OAuthModule.forRoot(),
     ComponentsModule,
     StoreModule.forRoot(combineReducer),
     StoreDevtoolsModule.instrument({

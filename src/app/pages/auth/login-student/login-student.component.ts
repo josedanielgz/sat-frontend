@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducers';
-import { GoogleService } from 'src/app/services/google.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-student',
@@ -11,13 +11,10 @@ import { GoogleService } from 'src/app/services/google.service';
 })
 export class LoginStudentComponent implements OnInit, OnDestroy {
   loading: boolean = false;
-  user: gapi.auth2.GoogleUser;
   subscription: Subscription = new Subscription();
-  subscription2: Subscription = new Subscription();
 
   constructor(
-    private googleService: GoogleService,
-    private ref: ChangeDetectorRef,
+    private authService: AuthService,
     private store: Store<AppState>
   ) {}
 
@@ -25,26 +22,21 @@ export class LoginStudentComponent implements OnInit, OnDestroy {
     this.subscription = this.store
       .select('ui')
       .subscribe(({ loading }) => (this.loading = loading));
-    this.subscription2 = this.googleService.observable().subscribe((user) => {
-      this.user = user;
-      if (!this.user) {
-        this.loading = false;
-      }
-      this.ref.detectChanges();
-    });
   }
 
-  signIn() {
-    this.loading = true;
-    const { protocol, host } = window.location;
-    this.googleService.singIn(
-      `${protocol}//${host}/estudiante/iniciar-sesion`,
-      'student'
-    );
+  async signIn() {
+    try {
+      this.loading = true;
+      await this.authService.loginWithGoogle('student');
+    } catch (error) {
+      console.error('Error durante el inicio de sesión:', error);
+      // Maneja el error apropiadamente (muestra un mensaje al usuario, etc.)
+    } finally {
+      this.loading = false;
+    }
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
   }
 }

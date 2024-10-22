@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url_backend: 'http://13.58.142.247:5000',
+  url_backend: 'http://192.168.20.21:5000',
 };
