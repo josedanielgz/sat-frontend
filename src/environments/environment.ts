@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  url_backend: 'http://192.168.0.4:5000',
+  url_backend: 'http://192.168.20.21:5000/',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -139,7 +139,10 @@ export class AuthService {
       case 'jefe':
         this.router.navigate(['/jefe']);
         break;
-      case 'administrativo':
+      case 'psicologo':
+        this.router.navigate(['/administrativo']);
+        break;
+      case 'medico':
         this.router.navigate(['/administrativo']);
         break;
       default:
