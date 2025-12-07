@@ -145,7 +145,6 @@ export class MeetingComponent implements OnInit, OnDestroy {
   }
 
   updateModal(show: boolean = true, role: String = '') {
-    this.showModalChat = show;
     this.role = role;
   }
 

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivitiesListComponent } from 'src/app/components/activities-list/activities-list.component';
 import { BinnacleComponent } from 'src/app/components/binnacle/binnacle.component';
-import { ChatComponent } from 'src/app/components/chat/chat.component';
 import { HistoryPsichologyComponent } from 'src/app/components/history-psichology/history-psichology.component';
 import { HistoryMeetComponent } from 'src/app/components/history-meet/history-meet.component';
 import { InfoAcademyComponent } from 'src/app/components/info-academy/info-academy.component';
@@ -24,7 +23,6 @@ import { StudentGuard } from 'src/app/guards/student.guard';
 
 const children: Routes = [
   { path: '', component: ListRisksComponent },
-  { path: 'chat', component: ChatComponent },
   { path: 'ver-historial', component: RecordComponent },
   {
     path: 'bitacora',

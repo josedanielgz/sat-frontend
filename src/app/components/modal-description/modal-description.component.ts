@@ -14,7 +14,6 @@ import { showAlert } from 'src/app/helpers/alert';
 import { User } from 'src/app/model/auth';
 import { Postulation } from 'src/app/model/risk';
 import { UpdateCounterAction } from 'src/app/reducer/notification/notification.actions';
-import { ChatService } from 'src/app/services/chat.service';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -48,7 +47,7 @@ export class ModalDescriptionComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     private studentService: StudentService,
-    private chatService: ChatService
+
   ) {
     this.formHelp = this.createFormHelp();
   }
@@ -103,7 +102,6 @@ export class ModalDescriptionComponent implements OnInit, OnDestroy {
       const codeAuth = this.user.codigo;
       const role = this.user.rol;
       const title = `${name} lo ha postulado para realizar seguimiento`;
-      this.chatService.sendMessage(message, name, codeAuth, role, title);
     }
   }
 

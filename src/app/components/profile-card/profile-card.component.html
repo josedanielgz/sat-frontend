@@ -7,7 +7,7 @@
   <div class="info_student">
     <a class="pointer" (click)="goBack()"><i class="fas fa-arrow-left"></i></a>
     <div class="description">
-      <h3>
+      <!-- <h3>
         {{ userShow.nombre }} {{ userShow.apellido }}
         <i
           *ngIf="
@@ -18,7 +18,7 @@
           (click)="toChatAdmin()"
           class="fas fa-envelope red pointer"
         ></i>
-      </h3>
+      </h3> -->
       <p>{{ userShow.correo }}</p>
       <p *ngIf="userShow.rol !== 'docente'">
         <i class="fas fa-circle" [ngClass]="color"></i> {{ risk }}

@@ -12,7 +12,6 @@ import { AuthResponse, UserAuth } from '../model/auth';
 import { Role, RoleResponse, RoleSchedule, ScheduleResponse } from '../model/role';
 import { AddUserAction, RemoveUserAction } from '../reducer/auth/auth.actions';
 import { AuthState } from '../reducer/auth/auth.reducer';
-import { DeleteChatAction } from '../reducer/Chat/chat.actions';
 import { DeleteCourseAction, DesactiveCourseAction } from '../reducer/course/course.actions';
 import { DeleteNotificationsAction } from '../reducer/notification/notification.actions';
 import { RemoveRiskAction } from '../reducer/risk/risk.action';
@@ -102,7 +101,6 @@ export class AuthService {
     this.store.dispatch(new DeleteCourseAction());
     this.store.dispatch(new UnsetUserActiveAction());
     this.store.dispatch(new DesactiveCourseAction());
-    this.store.dispatch(new DeleteChatAction());
     this.store.dispatch(new DeleteNotificationsAction());
     this.store.dispatch(new FinishLoadingAction());
     this.store.dispatch(new RemoveRiskAction());

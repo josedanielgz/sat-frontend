@@ -11,7 +11,6 @@ import { TitleComponent } from './title/title.component';
 import { ItemCourseComponent } from './item-course/item-course.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ListRisksComponent } from './list-risks/list-risks.component';
-import { ChatComponent } from './chat/chat.component';
 import { DetailRisksComponent } from './detail-risks/detail-risks.component';
 import { InfoAcademyComponent } from './info-academy/info-academy.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
@@ -41,7 +40,6 @@ import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
 import { SearchGlobalComponent } from './search-global/search-global.component';
 import { ButtonNotificationComponent } from './button-notification/button-notification.component';
 import { ModalActivityComponent } from './modal-activity/modal-activity.component';
-import { ModalChatComponent } from './modal-chat/modal-chat.component';
 import { HistoryPsichologyComponent } from './history-psichology/history-psichology.component';
 import { HistoryMeetComponent } from './history-meet/history-meet.component';
 import { ModalHistoryComponent } from './modal-history/modal-history.component';
@@ -59,7 +57,6 @@ import { CakeComponent } from './cake/cake.component';
     ItemCourseComponent,
     NavbarComponent,
     ListRisksComponent,
-    ChatComponent,
     DetailRisksComponent,
     InfoAcademyComponent,
     UpdateProfileComponent,
@@ -89,7 +86,6 @@ import { CakeComponent } from './cake/cake.component';
     SearchGlobalComponent,
     ButtonNotificationComponent,
     ModalActivityComponent,
-    ModalChatComponent,
     HistoryPsichologyComponent,
     HistoryMeetComponent,
     ModalHistoryComponent,
@@ -127,7 +123,6 @@ import { CakeComponent } from './cake/cake.component';
     SearchGlobalComponent,
     ButtonNotificationComponent,
     ModalActivityComponent,
-    ModalChatComponent,
     HistoryPsichologyComponent,
     HistoryMeetComponent,
     ModalHistoryComponent,

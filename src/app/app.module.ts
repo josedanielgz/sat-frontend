@@ -56,7 +56,6 @@ import { AdministrativeProfileComponent } from './pages/administrative-profile/a
 import { SuggestionComponent } from './pages/suggestion/suggestion.component';
 import { ModalRoleComponent } from './pages/modal-role/modal-role.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
-import { ChatAdminComponent } from './pages/chat-admin/chat-admin.component';
 import { ActivitiesStudentComponent } from './pages/activities-student/activities-student.component';
 import { ProfileTeacherTeacherComponent } from './pages/profile-teacher-teacher/profile-teacher-teacher.component';
 import { SemesterCoursesComponent } from './pages/semester-courses/semester-courses.component';
@@ -97,7 +96,6 @@ PdfMakeWrapper.setFonts(pdfFonts);
     SuggestionComponent,
     ModalRoleComponent,
     ActivitiesComponent,
-    ChatAdminComponent,
     ActivitiesStudentComponent,
     ProfileTeacherTeacherComponent,
     SemesterCoursesComponent,
