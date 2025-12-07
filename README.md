@@ -146,16 +146,17 @@ Luego tenemos las siguientes interfaces complementarias.
   cómo se almacenan, envían y presentan a los usuarios finales. Contiene los
   siguientes campos:
 
-  | Campo            | Tipo    | Requerido | Descripción y Funcionalidad                                                                                                                  |
-|------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| _id?             | any     | Opcional  | Identificador único de la notificación en la base de datos (típicamente usado en MongoDB).                                                   |
-| title            | String  | Sí        | El título o encabezado de la notificación (ej. "Nueva Postulación Creada").                                                                  |
-| date             | Date    | Sí        | La marca de tiempo que indica cuándo se creó o envió la notificación.                                                                        |
-| isActive         | boolean | Sí        | Crucial. Indica el estado de la notificación. Generalmente true significa "no leída" o "pendiente", y false significa "leída" o "archivada". |
-| url              | String  | Sí        | La URL o ruta interna de la aplicación (Angular Router link) a la que debe navegar el usuario al hacer clic en la notificación.              |
-| codeReceiver     | String  | Sí        | El código del usuario (estudiante o administrador/profesor) al que está dirigida la notificación.                                            |
-| codeTransmitter? | String  | Opcional  | El código del usuario que generó o envió la notificación.                                                                                    |
-| roleTransmitter? | String  | Opcional  | El rol del usuario que envió la notificación (ej. "Bienestar" o "Psicología"), útil para filtros o visualización.                            |
+ 
+| Campo | Tipo | Requerido | Descripción y Funcionalidad |
+| :--- | :--- | :--- | :--- |
+| **`_id?`** | `any` | Opcional | Identificador único de la notificación en la base de datos (típicamente usado en MongoDB). |
+| **`title`** | `String` | Sí | El título o encabezado de la notificación (ej. "Nueva Postulación Creada"). |
+| **`date`** | `Date` | Sí | La marca de tiempo que indica cuándo se creó o envió la notificación. |
+| **`isActive`** | `boolean` | Sí | **Crucial.** Indica el estado de la notificación. Generalmente `true` significa "no leída" o "pendiente", y `false` significa "leída" o "archivada". |
+| **`url`** | `String` | Sí | La URL o ruta interna de la aplicación (Angular Router link) a la que debe navegar el usuario al hacer clic en la notificación. |
+| **`codeReceiver`** | `String` | Sí | El código del usuario (estudiante o administrador/profesor) al que está dirigida la notificación. |
+| **`codeTransmitter?`** | `String` | Opcional | El código del usuario que generó o envió la notificación. |
+| **`roleTransmitter?`** | `String` | Opcional | El rol del usuario que envió la notificación (ej. "Bienestar" o "Psicología"), útil para filtros o visualización. |
   
 * meetClinical.ts y meetPsychology.ts: Estas dos interfaces son la base del
   módulo de salud clínica y bienestar de la aplicación, definiendo el
@@ -164,22 +165,22 @@ Luego tenemos las siguientes interfaces complementarias.
 
   La primera de ellas es:
 
-  | Campo                          | Propósito Funcional                                                                                                                                      |
-|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| reasonConsultation             | Motivo por el cual el estudiante busca ayuda o consulta (parte subjetiva).                                                                               |
-| generalIllness                 | Información sobre la enfermedad o molestia general reportada.                                                                                            |
-| systemsReview                  | Revisión por sistemas (interrogatorio organizado), una técnica de evaluación médica.                                                                     |
-| heartRate, bloodPressure, etc. | Signos Vitales y Medidas Objetivas. Estos campos registran datos físicos clave como la Frecuencia Cardíaca, Tensión Arterial, Temperatura, Peso y Talla. |
+| Campo | Propósito Funcional |
+| :--- | :--- |
+| **`reasonConsultation`** | Motivo por el cual el estudiante busca ayuda o consulta (parte subjetiva). |
+| **`generalIllness`** | Información sobre la enfermedad o molestia general reportada. |
+| **`systemsReview`** | Revisión por sistemas (interrogatorio organizado), una técnica de evaluación médica. |
+| **`heartRate`, `bloodPressure`, etc.** | Signos Vitales y Medidas Objetivas. Estos campos registran datos físicos clave como la Frecuencia Cardíaca, Tensión Arterial, Temperatura, Peso y Talla. |
 
 Luego tenemos
 
-| Campo                     | Propósito Funcional                                                                                                                |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| reasonMeet                | El motivo de la consulta o sesión psicológica.                                                                                     |
-| currentProblem            | Descripción detallada del problema o situación que motiva la atención.                                                             |
-| diagnosis                 | El diagnóstico o la impresión diagnóstica del psicólogo (eje: ansiedad, depresión, problemas de adaptación).                       |
-| psychotherapeuticApproach | La estrategia o enfoque terapéutico que se está utilizando con el estudiante (eje: Terapia Cognitivo-Conductual, Humanista, etc.). |
-| forecast                  | El pronóstico del caso (la expectativa sobre la evolución de la situación).                                                        |
+| Campo | Propósito Funcional |
+| :--- | :--- |
+| **`reasonMeet`** | El motivo de la consulta o sesión psicológica. |
+| **`currentProblem`** | Descripción detallada del problema o situación que motiva la atención. |
+| **`diagnosis`** | El diagnóstico o la impresión diagnóstica del psicólogo (eje: ansiedad, depresión, problemas de adaptación). |
+| **`psychotherapeuticApproach`** | La estrategia o enfoque terapéutico que se está utilizando con el estudiante (eje: Terapia Cognitivo-Conductual, Humanista, etc.). |
+| **`forecast`** | El pronóstico del caso (la expectativa sobre la evolución de la situación). |                            |
 
 ### Funcionalidad de Negocio
 
