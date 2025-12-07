@@ -373,3 +373,29 @@ Archivos que definen cómo se construye y se ejecuta la aplicación.
   ejecuta la aplicación (e.g., URLs de la API, claves de configuración).
   Comúnmente utilizada para encapsular secretos de manera segura o configurar
   algunas herramientas ancillares del entorno de ejecución.
+
+## Resumen de Cambios
+
+Los componentes de la funcionalidad de chat no fueron implementados correctamente y no son funcionales, por lo que se consideró
+sensato eliminar menciones de estos en los servicios de la aplicación.
+
+~~~
+# En el archivo src/app/components/components.module.ts
+
+# En el archivo /src/app/dashboard-student/children/children-routing.module.ts
+
+# En el archivo src/app/app.module.ts
+ChatAdminComponent
+
+# En el archivo src/app/app.reducers.ts
+chat:fromChat.ChatState;
+
+# En el archivo src/app/services/auth.service.ts
+DeleteChatAction
+
+# en el archivo data.ts
+Método toChat()
+
+# en el archivo routes.ts
+componente app-modal-chat
+~~~
